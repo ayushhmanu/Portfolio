@@ -1,45 +1,48 @@
-import { useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { ScrollAnimationWrapper } from "./scroll-animation-wrapper";
-import { motion, AnimatePresence } from "motion/react";
+import { useState } from "react"
+import { ChevronLeft, ChevronRight } from "lucide-react"
+import { ScrollAnimationWrapper } from "./scroll-animation-wrapper"
+import { motion, AnimatePresence } from "motion/react"
 
 const caseStudies = [
   {
     id: 1,
     title: "Case Study 1",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/VolkswagenGTIReview.mp4",
+    videoUrl:
+      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/VolkswagenGTIReview.mp4",
     client: "Volkswagen",
     category: "Automotive",
   },
   {
     id: 2,
     title: "Case Study 2",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4",
+    videoUrl:
+      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4",
     client: "Adventure Co.",
     category: "Travel",
   },
   {
     id: 3,
     title: "Case Study 3",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4",
+    videoUrl:
+      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4",
     client: "Auto Guide",
     category: "Review",
   },
-];
+]
 
 export function CaseStudies() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [direction, setDirection] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [direction, setDirection] = useState(0)
 
   const handlePrev = () => {
-    setDirection(-1);
-    setCurrentIndex((prev) => (prev === 0 ? caseStudies.length - 1 : prev - 1));
-  };
+    setDirection(-1)
+    setCurrentIndex((prev) => (prev === 0 ? caseStudies.length - 1 : prev - 1))
+  }
 
   const handleNext = () => {
-    setDirection(1);
-    setCurrentIndex((prev) => (prev === caseStudies.length - 1 ? 0 : prev + 1));
-  };
+    setDirection(1)
+    setCurrentIndex((prev) => (prev === caseStudies.length - 1 ? 0 : prev + 1))
+  }
 
   return (
     <section className="relative py-24 bg-white">
@@ -97,9 +100,13 @@ export function CaseStudies() {
                     <span className="px-3 py-1 bg-purple-600 text-white text-sm rounded-full">
                       {caseStudies[currentIndex].category}
                     </span>
-                    <span className="text-gray-300 text-sm">{caseStudies[currentIndex].client}</span>
+                    <span className="text-gray-300 text-sm">
+                      {caseStudies[currentIndex].client}
+                    </span>
                   </div>
-                  <h3 className="handwriting text-white text-3xl">{caseStudies[currentIndex].title}</h3>
+                  <h3 className="handwriting text-white text-3xl">
+                    {caseStudies[currentIndex].title}
+                  </h3>
                 </motion.div>
               </div>
 
@@ -120,8 +127,8 @@ export function CaseStudies() {
                 <button
                   key={index}
                   onClick={() => {
-                    setDirection(index > currentIndex ? 1 : -1);
-                    setCurrentIndex(index);
+                    setDirection(index > currentIndex ? 1 : -1)
+                    setCurrentIndex(index)
                   }}
                   className={`h-2 rounded-full transition-all ${
                     index === currentIndex
@@ -135,5 +142,5 @@ export function CaseStudies() {
         </ScrollAnimationWrapper>
       </div>
     </section>
-  );
+  )
 }

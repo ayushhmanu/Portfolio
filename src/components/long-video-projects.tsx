@@ -1,42 +1,45 @@
-import { useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { ScrollAnimationWrapper } from "./scroll-animation-wrapper";
-import { motion, AnimatePresence } from "motion/react";
+import { useState } from "react"
+import { ChevronLeft, ChevronRight } from "lucide-react"
+import { ScrollAnimationWrapper } from "./scroll-animation-wrapper"
+import { motion, AnimatePresence } from "motion/react"
 
 const projects = [
   {
     id: 1,
     title: "Project 1",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+    videoUrl:
+      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
     description: "A cinematic journey through visual storytelling",
   },
   {
     id: 2,
     title: "Project 2",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+    videoUrl:
+      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
     description: "Creative excellence meets technical precision",
   },
   {
     id: 3,
     title: "Project 3",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+    videoUrl:
+      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
     description: "Bringing ideas to life through motion",
   },
-];
+]
 
 export function LongVideoProjects() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [direction, setDirection] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [direction, setDirection] = useState(0)
 
   const handlePrev = () => {
-    setDirection(-1);
-    setCurrentIndex((prev) => (prev === 0 ? projects.length - 1 : prev - 1));
-  };
+    setDirection(-1)
+    setCurrentIndex((prev) => (prev === 0 ? projects.length - 1 : prev - 1))
+  }
 
   const handleNext = () => {
-    setDirection(1);
-    setCurrentIndex((prev) => (prev === projects.length - 1 ? 0 : prev + 1));
-  };
+    setDirection(1)
+    setCurrentIndex((prev) => (prev === projects.length - 1 ? 0 : prev + 1))
+  }
 
   return (
     <section id="work" className="relative py-24 bg-white">
@@ -81,7 +84,7 @@ export function LongVideoProjects() {
                     </motion.video>
                   </AnimatePresence>
                 </div>
-                
+
                 {/* Project Info Overlay */}
                 <motion.div
                   key={projects[currentIndex].id}
@@ -90,7 +93,9 @@ export function LongVideoProjects() {
                   transition={{ delay: 0.3 }}
                   className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6"
                 >
-                  <h3 className="handwriting text-white text-3xl mb-2">{projects[currentIndex].title}</h3>
+                  <h3 className="handwriting text-white text-3xl mb-2">
+                    {projects[currentIndex].title}
+                  </h3>
                   <p className="text-gray-300">{projects[currentIndex].description}</p>
                 </motion.div>
               </div>
@@ -112,13 +117,11 @@ export function LongVideoProjects() {
                 <button
                   key={index}
                   onClick={() => {
-                    setDirection(index > currentIndex ? 1 : -1);
-                    setCurrentIndex(index);
+                    setDirection(index > currentIndex ? 1 : -1)
+                    setCurrentIndex(index)
                   }}
                   className={`h-2 rounded-full transition-all ${
-                    index === currentIndex 
-                      ? "w-8 bg-red-600" 
-                      : "w-2 bg-gray-300 hover:bg-gray-400"
+                    index === currentIndex ? "w-8 bg-red-600" : "w-2 bg-gray-300 hover:bg-gray-400"
                   }`}
                 />
               ))}
@@ -127,5 +130,5 @@ export function LongVideoProjects() {
         </ScrollAnimationWrapper>
       </div>
     </section>
-  );
+  )
 }

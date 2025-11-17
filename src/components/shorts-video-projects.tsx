@@ -1,18 +1,20 @@
-import { useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { ScrollAnimationWrapper } from "./scroll-animation-wrapper";
-import { motion } from "motion/react";
+import { useState } from "react"
+import { ChevronLeft, ChevronRight } from "lucide-react"
+import { ScrollAnimationWrapper } from "./scroll-animation-wrapper"
+import { motion } from "motion/react"
 
 const shorts = [
   {
     id: 1,
     title: "Short 1",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+    videoUrl:
+      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
   },
   {
     id: 2,
     title: "Short 2",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
+    videoUrl:
+      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
   },
   {
     id: 3,
@@ -22,27 +24,28 @@ const shorts = [
   {
     id: 4,
     title: "Short 4",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4",
+    videoUrl:
+      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4",
   },
   {
     id: 5,
     title: "Short 5",
     videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
   },
-];
+]
 
 export function ShortsVideoProjects() {
-  const [startIndex, setStartIndex] = useState(0);
+  const [startIndex, setStartIndex] = useState(0)
 
   const handlePrev = () => {
-    setStartIndex((prev) => (prev === 0 ? shorts.length - 3 : prev - 1));
-  };
+    setStartIndex((prev) => (prev === 0 ? shorts.length - 3 : prev - 1))
+  }
 
   const handleNext = () => {
-    setStartIndex((prev) => (prev >= shorts.length - 3 ? 0 : prev + 1));
-  };
+    setStartIndex((prev) => (prev >= shorts.length - 3 ? 0 : prev + 1))
+  }
 
-  const visibleShorts = shorts.slice(startIndex, startIndex + 3);
+  const visibleShorts = shorts.slice(startIndex, startIndex + 3)
 
   return (
     <section className="relative py-24 bg-gray-50">
@@ -80,14 +83,11 @@ export function ShortsVideoProjects() {
                     transition={{
                       duration: 0.5,
                       delay: index * 0.1,
-                      ease: [0.21, 0.47, 0.32, 0.98]
+                      ease: [0.21, 0.47, 0.32, 0.98],
                     }}
                     whileHover={{ scale: 1.05, y: -10, rotateY: 5 }}
                   >
-                    <video
-                      className="w-full h-full object-cover"
-                      controls
-                    >
+                    <video className="w-full h-full object-cover" controls>
                       <source src={short.videoUrl} type="video/mp4" />
                     </video>
                   </motion.div>
@@ -108,5 +108,5 @@ export function ShortsVideoProjects() {
         </ScrollAnimationWrapper>
       </div>
     </section>
-  );
+  )
 }

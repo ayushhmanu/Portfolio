@@ -1,5 +1,5 @@
-import { motion } from "motion/react";
-import { ScrollAnimationWrapper } from "./scroll-animation-wrapper";
+import { motion } from "motion/react"
+import { ScrollAnimationWrapper } from "./scroll-animation-wrapper"
 
 const clients = [
   { name: "Google", logo: "G" },
@@ -11,7 +11,7 @@ const clients = [
   { name: "Tesla", logo: "T" },
   { name: "Nike", logo: "N" },
   { name: "Spotify", logo: "S" },
-];
+]
 
 export function ClientsSection() {
   return (
@@ -36,20 +36,18 @@ export function ClientsSection() {
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ 
-                    duration: 0.5, 
+                  transition={{
+                    duration: 0.5,
                     delay: index * 0.05,
-                    ease: [0.21, 0.47, 0.32, 0.98]
+                    ease: [0.21, 0.47, 0.32, 0.98],
                   }}
-                  whileHover={{ 
+                  whileHover={{
                     y: -10,
-                    boxShadow: "0 25px 50px -12px rgba(220, 38, 38, 0.25)"
+                    boxShadow: "0 25px 50px -12px rgba(220, 38, 38, 0.25)",
                   }}
                 >
                   <div className="text-center">
-                    <div className="handwriting text-4xl text-red-600 mb-2">
-                      {client.logo}
-                    </div>
+                    <div className="handwriting text-4xl text-red-600 mb-2">{client.logo}</div>
                     <div className="text-gray-700 text-sm">{client.name}</div>
                   </div>
                 </motion.div>
@@ -72,9 +70,7 @@ export function ClientsSection() {
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   whileHover={{ y: -5 }}
                 >
-                  <div className="handwriting text-4xl text-red-600 mb-2">
-                    {stat.value}
-                  </div>
+                  <div className="handwriting text-4xl text-red-600 mb-2">{stat.value}</div>
                   <div className="text-gray-600">{stat.label}</div>
                 </motion.div>
               ))}
@@ -83,5 +79,5 @@ export function ClientsSection() {
         </ScrollAnimationWrapper>
       </div>
     </section>
-  );
+  )
 }

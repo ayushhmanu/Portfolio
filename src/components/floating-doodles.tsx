@@ -1,7 +1,29 @@
-import { motion } from "motion/react";
-import { Camera, Video, Film, Clapperboard, Sparkles, Star, Zap, Award, Target, TrendingUp } from "lucide-react";
+import { motion } from "motion/react"
+import {
+  Camera,
+  Video,
+  Film,
+  Clapperboard,
+  Sparkles,
+  Star,
+  Zap,
+  Award,
+  Target,
+  TrendingUp,
+} from "lucide-react"
 
-const doodleIcons = [Camera, Video, Film, Clapperboard, Sparkles, Star, Zap, Award, Target, TrendingUp];
+const doodleIcons = [
+  Camera,
+  Video,
+  Film,
+  Clapperboard,
+  Sparkles,
+  Star,
+  Zap,
+  Award,
+  Target,
+  TrendingUp,
+]
 
 // Film strip artifact
 const FilmStrip = ({ x, y, rotation, delay }: any) => (
@@ -27,14 +49,14 @@ const FilmStrip = ({ x, y, rotation, delay }: any) => (
       ))}
     </div>
   </motion.div>
-);
+)
 
 // Circle artifact
 const CircleArtifact = ({ x, y, size, delay }: any) => (
   <motion.div
     className="absolute rounded-full border-2 border-red-500/20"
-    style={{ 
-      left: `${x}%`, 
+    style={{
+      left: `${x}%`,
       top: `${y}%`,
       width: `${size}px`,
       height: `${size}px`,
@@ -51,7 +73,7 @@ const CircleArtifact = ({ x, y, size, delay }: any) => (
       ease: "linear",
     }}
   />
-);
+)
 
 // Plus sign
 const PlusSign = ({ x, y, delay }: any) => (
@@ -71,7 +93,7 @@ const PlusSign = ({ x, y, delay }: any) => (
   >
     <div className="text-6xl">+</div>
   </motion.div>
-);
+)
 
 export function FloatingDoodles() {
   const doodles = [
@@ -80,7 +102,7 @@ export function FloatingDoodles() {
     { Icon: Video, x: 20, y: 70, delay: 1 },
     { Icon: Camera, x: 90, y: 80, delay: 1.5 },
     { Icon: Film, x: 50, y: 10, delay: 2 },
-  ];
+  ]
 
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
@@ -148,5 +170,5 @@ export function FloatingDoodles() {
         }}
       />
     </div>
-  );
+  )
 }

@@ -1,6 +1,6 @@
-import { motion } from "motion/react";
-import { ScrollAnimationWrapper } from "./scroll-animation-wrapper";
-import { Star } from "lucide-react";
+import { motion } from "motion/react"
+import { ScrollAnimationWrapper } from "./scroll-animation-wrapper"
+import { Star } from "lucide-react"
 
 const testimonials = [
   {
@@ -45,7 +45,7 @@ const testimonials = [
     role: "Startup Founder",
     rating: 5,
   },
-];
+]
 
 export function TestimonialsSection() {
   return (
@@ -72,11 +72,11 @@ export function TestimonialsSection() {
                 transition={{
                   duration: 0.6,
                   delay: index * 0.1,
-                  ease: [0.21, 0.47, 0.32, 0.98]
+                  ease: [0.21, 0.47, 0.32, 0.98],
                 }}
                 whileHover={{
                   y: -10,
-                  boxShadow: "0 25px 50px -12px rgba(124, 58, 237, 0.25)"
+                  boxShadow: "0 25px 50px -12px rgba(124, 58, 237, 0.25)",
                 }}
               >
                 {/* Stars */}
@@ -87,9 +87,7 @@ export function TestimonialsSection() {
                 </div>
 
                 {/* Quote */}
-                <p className="text-gray-700 mb-6 leading-relaxed">
-                  "{testimonial.text}"
-                </p>
+                <p className="text-gray-700 mb-6 leading-relaxed">"{testimonial.text}"</p>
 
                 {/* Author */}
                 <div className="flex items-center gap-3 pt-4 border-t border-purple-200">
@@ -107,5 +105,5 @@ export function TestimonialsSection() {
         </ScrollAnimationWrapper>
       </div>
     </section>
-  );
+  )
 }

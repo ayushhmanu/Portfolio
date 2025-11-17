@@ -1,5 +1,5 @@
-import { Youtube, Instagram, Twitter, Mail } from "lucide-react";
-import { motion } from "motion/react";
+import { Youtube, Instagram, Twitter, Mail } from "lucide-react"
+import { motion } from "motion/react"
 
 export function Footer() {
   return (
@@ -95,12 +95,10 @@ export function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <p className="text-gray-500 text-sm">
-              © 2025 Ayushhmanu. All rights reserved.
-            </p>
+            <p className="text-gray-500 text-sm">© 2025 Ayushhmanu. All rights reserved.</p>
           </motion.div>
         </div>
       </div>
     </footer>
-  );
+  )
 }

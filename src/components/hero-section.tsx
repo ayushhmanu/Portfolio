@@ -1,17 +1,17 @@
-import { motion, useScroll, useTransform } from "motion/react";
-import { useRef } from "react";
+import { motion, useScroll, useTransform } from "motion/react"
+import { useRef } from "react"
 
 export function HeroSection() {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
-  });
+  })
 
-  const videoWidth = useTransform(scrollYProgress, [0, 0.3], ["97%", "100%"]);
-  const videoBorderRadius = useTransform(scrollYProgress, [0, 0.3], ["24px", "0px"]);
-  const textOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
-  const textY = useTransform(scrollYProgress, [0, 0.2], [0, -50]);
+  const videoWidth = useTransform(scrollYProgress, [0, 0.3], ["97%", "100%"])
+  const videoBorderRadius = useTransform(scrollYProgress, [0, 0.3], ["24px", "0px"])
+  const textOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0])
+  const textY = useTransform(scrollYProgress, [0, 0.2], [0, -50])
 
   return (
     <section ref={containerRef} className="relative h-screen overflow-hidden bg-black">
@@ -44,14 +44,18 @@ export function HeroSection() {
 
       {/* Animated grid overlay */}
       <div className="absolute inset-0 z-10 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: 'linear-gradient(rgba(220, 38, 38, 0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(220, 38, 38, 0.5) 1px, transparent 1px)',
-          backgroundSize: '100px 100px'
-        }}></div>
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(220, 38, 38, 0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(220, 38, 38, 0.5) 1px, transparent 1px)",
+            backgroundSize: "100px 100px",
+          }}
+        ></div>
       </div>
 
       {/* Hero Content - Centered on video */}
-      <motion.div 
+      <motion.div
         className="absolute inset-0 flex items-center justify-center z-20"
         style={{ opacity: textOpacity, y: textY }}
       >
@@ -63,9 +67,7 @@ export function HeroSection() {
           >
             <h1 className="handwriting text-7xl md:text-9xl lg:text-[10rem] mb-8">
               <span className="block text-white drop-shadow-2xl mb-2">Not Just a</span>
-              <span className="block text-red-500 drop-shadow-2xl">
-                Video Editor
-              </span>
+              <span className="block text-red-500 drop-shadow-2xl">Video Editor</span>
             </h1>
           </motion.div>
 
@@ -75,9 +77,9 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.8 }}
           >
-            Crafting cinematic stories that captivate audiences and elevate brands through 
-            <span className="text-red-400"> cutting-edge editing</span>, 
-            <span className="text-white"> color grading</span>, and 
+            Crafting cinematic stories that captivate audiences and elevate brands through
+            <span className="text-red-400"> cutting-edge editing</span>,
+            <span className="text-white"> color grading</span>, and
             <span className="text-red-300"> motion design</span>
           </motion.p>
 
@@ -86,9 +88,9 @@ export function HeroSection() {
             className="absolute bottom-12 left-1/2 -translate-x-1/2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1, y: [0, 10, 0] }}
-            transition={{ 
+            transition={{
               opacity: { delay: 1.5, duration: 0.5 },
-              y: { repeat: Infinity, duration: 2, ease: "easeInOut" }
+              y: { repeat: Infinity, duration: 2, ease: "easeInOut" },
             }}
           >
             <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center p-2">
@@ -98,5 +100,5 @@ export function HeroSection() {
         </div>
       </motion.div>
     </section>
-  );
+  )
 }
