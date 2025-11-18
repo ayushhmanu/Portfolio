@@ -1,11 +1,18 @@
 
-  # Portfolio Video Website
+# Ayush Manu – Portfolio Site
 
-  This is a code bundle for Portfolio Video Website. The original project is available at https://www.figma.com/design/N2JKEef80nAhSK564y6KHK/Portfolio-Video-Website.
+This repo contains the Vite + React codebase powering Ayush Manu's video portfolio. It includes polished motion-heavy sections (hero reel, client reels, testimonials, and contact) tailored to showcase bespoke editing work built completely in-house.
 
-  ## Running the code
+## Development
 
-  Run `npm i` to install the dependencies.
+```pwsh
+pnpm install
+pnpm dev
+```
 
-  Run `npm run dev` to start the development server.
-  
+## Useful scripts
+
+- `pnpm build` – production build via Vite
+- `pnpm lint` – run Biome lint rules
+- `pnpm format` – auto-format the project (writes changes)
+- `pnpm format:check` – verify formatting without touching files

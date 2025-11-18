@@ -1,6 +1,8 @@
 import { motion, useScroll, useTransform } from "motion/react"
 import { useRef } from "react"
 
+const HERO_VIDEO_SRC = "https://www.pexels.com/download/video/27601318/"
+
 export function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
@@ -14,7 +16,7 @@ export function HeroSection() {
   const textY = useTransform(scrollYProgress, [0, 0.2], [0, -50])
 
   return (
-    <section ref={containerRef} className="relative h-screen overflow-hidden bg-black">
+    <section ref={containerRef} className="relative h-screen overflow-hidden bg-white">
       {/* Video Container */}
       <motion.div
         className="relative h-full mx-auto overflow-hidden"
@@ -30,16 +32,17 @@ export function HeroSection() {
           loop
           muted
           playsInline
+          poster={HERO_VIDEO_SRC}
+          preload="auto"
           className="absolute inset-0 w-full h-full object-cover"
         >
-          <source
-            src="https://assets.mixkit.co/videos/preview/mixkit-tv-camera-in-a-professional-studio-14256-large.mp4"
-            type="video/mp4"
-          />
+          <source src={HERO_VIDEO_SRC} type="video/mp4" />
         </video>
 
         {/* Overlay for better text readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/80"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30"></div>
+        <div className="absolute inset-0 opacity-[0.15] mix-blend-soft-light bg-[url('https://www.transparenttextures.com/patterns/asfalt-light.png')]" />
       </motion.div>
 
       {/* Animated grid overlay */}

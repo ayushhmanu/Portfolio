@@ -54,7 +54,7 @@ export function TestimonialsSection() {
         <ScrollAnimationWrapper>
           {/* Title */}
           <div className="text-center mb-16">
-            <h2 className="handwriting text-5xl md:text-6xl bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent mb-4">
+            <h2 className="handwriting text-5xl md:text-6xl bg-gradient-to-r from-red-500 via-red-700 to-black bg-clip-text text-transparent mb-4">
               What Clients Say
             </h2>
             <p className="text-gray-600 text-lg">Real feedback from real people</p>
@@ -65,7 +65,7 @@ export function TestimonialsSection() {
             {testimonials.map((testimonial, index) => (
               <motion.div
                 key={testimonial.id}
-                className="bg-gradient-to-br from-white to-purple-50 rounded-2xl p-6 shadow-lg border border-purple-100"
+                className="bg-gradient-to-br from-white to-red-50 rounded-2xl p-6 shadow-lg border border-red-100"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
@@ -76,13 +76,13 @@ export function TestimonialsSection() {
                 }}
                 whileHover={{
                   y: -10,
-                  boxShadow: "0 25px 50px -12px rgba(124, 58, 237, 0.25)",
+                  boxShadow: "0 25px 50px -12px rgba(220, 38, 38, 0.25)",
                 }}
               >
                 {/* Stars */}
                 <div className="flex gap-1 mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                    <Star key={i} className="w-5 h-5 fill-red-500 text-red-500" />
                   ))}
                 </div>
 
@@ -90,8 +90,8 @@ export function TestimonialsSection() {
                 <p className="text-gray-700 mb-6 leading-relaxed">"{testimonial.text}"</p>
 
                 {/* Author */}
-                <div className="flex items-center gap-3 pt-4 border-t border-purple-200">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-indigo-600 flex items-center justify-center text-white">
+                <div className="flex items-center gap-3 pt-4 border-t border-red-200">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-red-500 via-red-700 to-black flex items-center justify-center text-white">
                     {testimonial.author.charAt(0)}
                   </div>
                   <div>

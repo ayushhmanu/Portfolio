@@ -51,7 +51,7 @@ export function CaseStudies() {
           <div className="max-w-6xl mx-auto">
             {/* Title */}
             <div className="text-center mb-16">
-              <h2 className="handwriting text-5xl md:text-6xl bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent mb-4">
+              <h2 className="handwriting text-5xl md:text-6xl bg-gradient-to-r from-red-500 via-red-700 to-black bg-clip-text text-transparent mb-4">
                 Case Studies
               </h2>
               <p className="text-gray-600 text-lg">Deep dives into successful projects</p>
@@ -62,7 +62,7 @@ export function CaseStudies() {
               {/* Left Arrow */}
               <motion.button
                 onClick={handlePrev}
-                className="flex-shrink-0 w-14 h-14 rounded-full bg-white shadow-lg flex items-center justify-center text-purple-600 hover:bg-purple-600 hover:text-white transition-all z-10"
+                className="flex-shrink-0 w-14 h-14 rounded-full bg-white shadow-lg flex items-center justify-center text-red-600 hover:bg-red-600 hover:text-white transition-all z-10"
                 whileHover={{ scale: 1.1, x: -5 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -97,7 +97,7 @@ export function CaseStudies() {
                   className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6"
                 >
                   <div className="flex items-center gap-3 mb-2">
-                    <span className="px-3 py-1 bg-purple-600 text-white text-sm rounded-full">
+                    <span className="px-3 py-1 bg-red-600 text-white text-sm rounded-full">
                       {caseStudies[currentIndex].category}
                     </span>
                     <span className="text-gray-300 text-sm">
@@ -113,7 +113,7 @@ export function CaseStudies() {
               {/* Right Arrow */}
               <motion.button
                 onClick={handleNext}
-                className="flex-shrink-0 w-14 h-14 rounded-full bg-white shadow-lg flex items-center justify-center text-purple-600 hover:bg-purple-600 hover:text-white transition-all z-10"
+                className="flex-shrink-0 w-14 h-14 rounded-full bg-white shadow-lg flex items-center justify-center text-red-600 hover:bg-red-600 hover:text-white transition-all z-10"
                 whileHover={{ scale: 1.1, x: 5 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -132,7 +132,7 @@ export function CaseStudies() {
                   }}
                   className={`h-2 rounded-full transition-all ${
                     index === currentIndex
-                      ? "w-8 bg-gradient-to-r from-purple-600 to-indigo-600"
+                      ? "w-8 bg-gradient-to-r from-red-500 via-red-700 to-black"
                       : "w-2 bg-gray-300 hover:bg-gray-400"
                   }`}
                 />

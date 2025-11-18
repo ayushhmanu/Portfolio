@@ -1,6 +1,9 @@
 import { motion } from "motion/react"
 import { useState, useEffect } from "react"
 
+const BRAND_NAME = "Ayush Manu"
+const CONTACT_EMAIL = "hello@ayushmanu.studio"
+
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
 
@@ -13,7 +16,7 @@ export function Header() {
   }, [])
 
   const handleHireMe = () => {
-    window.location.href = "mailto:ayushhmanu.works@gmail.com"
+    window.location.href = `mailto:${CONTACT_EMAIL}`
   }
 
   return (
@@ -33,7 +36,7 @@ export function Header() {
             whileHover={{ scale: 1.05 }}
           >
             <div className="w-10 h-10 rounded-full bg-red-600 shadow-lg shadow-red-500/50"></div>
-            <span className="handwriting text-white text-2xl drop-shadow-lg">ayushhmanu</span>
+            <span className="handwriting text-white text-2xl drop-shadow-lg">{BRAND_NAME}</span>
           </motion.div>
 
           <nav className="hidden md:flex items-center gap-8">

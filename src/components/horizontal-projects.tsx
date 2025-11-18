@@ -1,8 +1,24 @@
-import { motion, useScroll, useTransform } from "motion/react"
-import { useRef } from "react"
+import { useEffect, useLayoutEffect, useRef, useState } from "react"
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { Play } from "lucide-react"
 
-const projects = [
+let gsapRegistered = false
+
+if (typeof window !== "undefined" && !gsapRegistered) {
+  gsap.registerPlugin(ScrollTrigger)
+  gsapRegistered = true
+}
+
+interface Project {
+  id: number
+  title: string
+  category: string
+  videoUrl: string
+  thumbnail: string
+}
+
+const projects: Project[] = [
   {
     id: 1,
     title: "Commercial Reel 2024",
@@ -86,79 +102,192 @@ const projects = [
   },
 ]
 
-export function HorizontalProjects() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  })
+interface ProjectCardProps {
+  project: Project
+  index: number
+  variant: "desktop" | "mobile"
+}
 
-  // Calculate the proper x translation based on number of projects
-  const totalWidth = projects.length * 632
-  const viewportWidth = typeof window !== "undefined" ? window.innerWidth : 1920
-  const scrollDistance = -((totalWidth - viewportWidth) / totalWidth) * 100
+const ProjectCard = ({ project, index, variant }: ProjectCardProps) => {
+  const desktopSizing = "h-[65vh] min-h-[420px] w-[60vw] min-w-[520px] max-w-[780px]"
+  const mobileSizing = "h-[320px] w-[78vw] min-w-[260px] max-w-[360px]"
+  const sizing = variant === "desktop" ? desktopSizing : mobileSizing
 
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", `${scrollDistance}%`])
+  const snapClass = variant === "mobile" ? "snap-center" : ""
 
   return (
-    <section
-      ref={containerRef}
-      className="relative py-32 bg-white overflow-hidden"
-      style={{ height: "500vh" }}
+    <article
+      className={`group relative shrink-0 overflow-hidden rounded-[42px] bg-neutral-900 text-white shadow-2xl transition-transform duration-500 ${sizing} ${snapClass}`}
     >
-      <div className="sticky top-0 h-screen flex items-center overflow-hidden">
-        <div className="w-full">
-          <div className="container mx-auto px-6 mb-12">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="handwriting text-5xl md:text-6xl text-gray-900 mb-4">Featured Work</h2>
-              <p className="text-gray-600 text-lg">Scroll to explore my latest projects</p>
-            </motion.div>
+      <img
+        src={project.thumbnail}
+        alt={project.title}
+        loading="lazy"
+        className="absolute inset-0 h-full w-full object-cover transition-transform duration-1200 group-hover:scale-110"
+      />
+      <div className="absolute inset-0 bg-linear-to-br from-black/80 via-black/50 to-transparent" />
+
+      <div className="relative z-10 flex h-full flex-col justify-between p-6 sm:p-8">
+        <div className="flex items-center justify-between text-xs uppercase tracking-[0.35em] text-white/60">
+          <span>{String(index + 1).padStart(2, "0")}</span>
+          <span className="rounded-full border border-white/30 px-3 py-1 text-[0.65rem] tracking-[0.25em]">
+            {project.category}
+          </span>
+        </div>
+
+        <div>
+          <p className="text-sm uppercase tracking-[0.4em] text-red-300/80">Feature</p>
+          <h3 className="handwriting text-4xl leading-tight text-white drop-shadow-2xl md:text-5xl lg:text-6xl">
+            {project.title}
+          </h3>
+          <button
+            type="button"
+            className="mt-6 inline-flex items-center gap-3 rounded-full border border-white/30 bg-white/10 px-6 py-3 text-sm font-medium tracking-wide backdrop-blur transition hover:border-red-400 hover:bg-white/20"
+            aria-label={`Play ${project.title}`}
+          >
+            <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white text-black">
+              <Play className="h-4 w-4" fill="currentColor" />
+            </span>
+            Watch project
+          </button>
+        </div>
+      </div>
+    </article>
+  )
+}
+
+export function HorizontalProjects() {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const trackRef = useRef<HTMLDivElement>(null)
+  const progressRef = useRef<HTMLDivElement>(null)
+  const [isDesktop, setIsDesktop] = useState(() =>
+    typeof window !== "undefined" ? window.innerWidth >= 1024 : false
+  )
+
+  useEffect(() => {
+    if (typeof window === "undefined") return
+    const handleResize = () => setIsDesktop(window.innerWidth >= 1024)
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
+
+  useLayoutEffect(() => {
+    if (typeof window === "undefined" || !isDesktop) {
+      return
+    }
+
+    if (!containerRef.current || !trackRef.current || !progressRef.current) return
+
+    const ctx = gsap.context(() => {
+      const section = containerRef.current
+      const track = trackRef.current
+      const progress = progressRef.current
+      if (!section || !track || !progress) return
+
+      gsap.set(progress, { scaleX: 0, transformOrigin: "left center" })
+
+      gsap.to(track, {
+        x: () => `-${Math.max(0, track.scrollWidth - window.innerWidth)}`,
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "top top",
+          end: () => {
+            const distance = Math.max(0, track.scrollWidth - window.innerWidth)
+            return `+=${distance + window.innerHeight}`
+          },
+          pin: true,
+          scrub: 0.9,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            gsap.to(progress, {
+              scaleX: self.progress,
+              ease: "none",
+              duration: 0,
+            })
+          },
+        },
+      })
+
+      requestAnimationFrame(() => ScrollTrigger.refresh())
+    }, containerRef)
+
+    return () => ctx.revert()
+  }, [isDesktop])
+
+  if (!isDesktop) {
+    return (
+      <section ref={containerRef} className="relative overflow-hidden bg-[#050505] py-20 text-white">
+    <div className="absolute inset-0 bg-linear-to-b from-black via-black/90 to-black/70" />
+        <div className="absolute inset-0 opacity-20" style={{
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)",
+          backgroundSize: "160px 160px",
+        }} />
+
+  <div className="relative z-10 mx-auto max-w-screen-sm space-y-4 px-4 sm:px-6">
+          <p className="text-xs uppercase tracking-[0.4em] text-red-300">Featured Work</p>
+          <h2 className="handwriting text-5xl leading-tight">Swipe through the reel</h2>
+          <p className="text-white/70">Drag sideways to browse hero projects crafted for bold brands.</p>
+        </div>
+
+        <div className="relative mt-10 pl-4 sm:pl-8">
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-linear-to-r from-[#050505] via-[#050505]/80 to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-linear-to-l from-[#050505] via-[#050505]/80 to-transparent" />
+          <div className="flex gap-5 overflow-x-auto pb-10 pr-10 snap-x snap-mandatory">
+            {projects.map((project, index) => (
+              <ProjectCard key={project.id} project={project} index={index} variant="mobile" />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  return (
+    <section ref={containerRef} className="relative min-h-screen overflow-hidden bg-[#030303] text-white">
+  <div className="absolute inset-0 bg-linear-to-b from-black via-black/90 to-[#050505]" />
+      <div className="absolute inset-0 opacity-10" style={{
+        backgroundImage:
+          "radial-gradient(circle at 20% 20%, rgba(239,68,68,0.15), transparent 40%), radial-gradient(circle at 80% 0%, rgba(255,255,255,0.12), transparent 45%)",
+      }} />
+      <div className="absolute inset-0 opacity-15" style={{
+        backgroundImage:
+          "linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)",
+        backgroundSize: "200px 200px",
+      }} />
+
+      <div className="relative z-10 flex h-screen flex-col">
+        <header className="mx-auto w-full max-w-screen-2xl px-6 pt-16 pb-10 md:px-12 lg:px-24">
+          <p className="text-xs uppercase tracking-[0.5em] text-red-400">Featured Work</p>
+          <div className="mt-6 flex flex-col gap-4 md:flex-row md:items-end md:gap-12">
+            <h2 className="handwriting text-5xl leading-tight md:text-6xl lg:text-[4.5rem]">
+              Scroll to glide through the reel
+            </h2>
+            <p className="max-w-xl text-base text-white/70">
+              The section locks in place the moment it fills your screen, then glides sideways revealing
+              every hero project with a cinematic pace. Keep scrolling to exit once you reach the end.
+            </p>
+          </div>
+        </header>
+
+        <div className="relative flex-1">
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-28 bg-linear-to-r from-[#030303] via-[#030303]/80 to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-28 bg-linear-to-l from-[#030303] via-[#030303]/80 to-transparent" />
+
+          <div
+            ref={trackRef}
+            className="flex h-full items-center gap-10 px-4 md:px-12 lg:px-24 pr-[55vw] will-change-transform"
+          >
+            {projects.map((project, index) => (
+              <ProjectCard key={project.id} project={project} index={index} variant="desktop" />
+            ))}
           </div>
 
-          <motion.div style={{ x }} className="flex gap-8 pl-6">
-            {projects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                className="relative flex-shrink-0 w-[600px] h-[400px] rounded-3xl overflow-hidden group cursor-pointer"
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ delay: index * 0.05 }}
-                whileHover={{ scale: 1.05 }}
-              >
-                <img
-                  src={project.thumbnail}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute bottom-0 left-0 right-0 p-8">
-                    <div className="mb-2">
-                      <span className="px-3 py-1 bg-red-600 text-white text-sm rounded-full">
-                        {project.category}
-                      </span>
-                    </div>
-                    <h3 className="handwriting text-white text-3xl mb-4">{project.title}</h3>
-                    <button className="flex items-center gap-2 text-white hover:text-red-400 transition-colors">
-                      <Play className="w-5 h-5" fill="currentColor" />
-                      <span>Watch Project</span>
-                    </button>
-                  </div>
-                </div>
-
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <div className="w-20 h-20 rounded-full bg-white/90 flex items-center justify-center">
-                    <Play className="w-8 h-8 text-red-600 ml-1" fill="currentColor" />
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
+          <div className="absolute bottom-10 left-4 right-4 h-1.5 rounded-full bg-white/10 md:left-12 md:right-12">
+            <div ref={progressRef} className="h-full w-full origin-left scale-x-0 rounded-full bg-linear-to-r from-red-600 via-white to-red-500" />
+          </div>
         </div>
       </div>
     </section>

@@ -21,8 +21,8 @@ export function AboutSection() {
             <div className="text-center mb-16">
               <h2 className="handwriting text-5xl md:text-6xl text-gray-900 mb-4">About Me</h2>
               <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-                A passionate video editor with 5+ years of experience crafting compelling visual
-                stories
+                Ayush Manu is a self-taught video editor and filmmaker based in India, blending
+                documentary instincts with commercial polish so every cut feels intimate and human.
               </p>
             </div>
 
@@ -40,10 +40,13 @@ export function AboutSection() {
                   <div className="w-32 h-32 mx-auto mb-6 rounded-full bg-red-600 flex items-center justify-center shadow-xl">
                     <Film className="w-16 h-16 text-white" />
                   </div>
-                  <h3 className="handwriting text-4xl text-center text-gray-900 mb-4">Ayushmanu</h3>
+                  <h3 className="handwriting text-4xl text-center text-gray-900 mb-4">
+                    Ayush Manu
+                  </h3>
                   <p className="text-gray-600 text-center leading-relaxed">
-                    Transforming ideas into captivating visual experiences. Specializing in creative
-                    storytelling, color grading, and motion graphics that leave lasting impressions.
+                    I partner with founders, artists, and agencies to shape campaigns that feel like
+                    lived moments—grounded in story, polished with thoughtful color, and paced for
+                    modern platforms.
                   </p>
                 </div>
               </motion.div>

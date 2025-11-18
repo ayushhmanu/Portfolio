@@ -24,7 +24,7 @@ export default function App() {
         <LongVideoProjects />
         <ShortsVideoProjects />
         <CaseStudies />
-        <MarqueeTestimonials />
+        {/* <MarqueeTestimonials /> */}
         <ClientsSection />
         <AboutSection />
       </main>

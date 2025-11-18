@@ -1,4 +1,6 @@
+import type { CSSProperties } from "react"
 import { motion } from "motion/react"
+import { ScrollAnimationWrapper } from "./scroll-animation-wrapper"
 
 const testimonials = [
   {
@@ -39,85 +41,80 @@ const testimonials = [
 ]
 
 export function MarqueeTestimonials() {
+  const wheelStyle = {
+    "--wheel-size": "80vw",
+    "--wheel-radius": "calc((var(--wheel-size) / 2) - 52px)",
+    "--wheel-duration": "36s",
+  } as CSSProperties
+
   return (
-    <section className="relative py-24 bg-gray-50 overflow-hidden">
-      <div className="container mx-auto px-6 mb-12">
-        <h2 className="handwriting text-5xl md:text-6xl text-gray-900 text-center mb-4">
-          Client Love
-        </h2>
-        <p className="text-gray-600 text-lg text-center">What people are saying</p>
+    <section className="relative overflow-hidden py-24 text-white">
+      <div className="absolute inset-0">
+        <div className="absolute inset-0" />
+        <div
+          className="absolute inset-0 opacity-30"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.12) 1px, transparent 0)",
+            backgroundSize: "26px 26px",
+          }}
+        />
+        <div className="absolute inset-x-0 top-0 h-40" />
       </div>
-
-      <div className="relative">
-        {/* First Row - Left to Right */}
-        <div className="flex overflow-hidden mb-6">
+      <div className="relative z-10 mx-auto max-w-6xl px-6">
+        <ScrollAnimationWrapper>
           <motion.div
-            className="flex gap-6"
-            animate={{
-              x: [0, -1920],
-            }}
-            transition={{
-              duration: 30,
-              repeat: Infinity,
-              ease: "linear",
-            }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
+            className="text-center"
           >
-            {[...testimonials, ...testimonials, ...testimonials].map((testimonial, index) => (
-              <div
-                key={`row1-${index}`}
-                className="flex-shrink-0 w-[400px] bg-white rounded-2xl p-6 shadow-lg border border-gray-100"
-              >
-                <div className="flex items-center gap-4 mb-4">
-                  <img
-                    src={testimonial.image}
-                    alt={testimonial.author}
-                    className="w-16 h-16 rounded-full object-cover"
-                  />
-                  <div>
-                    <div className="text-gray-900">{testimonial.author}</div>
-                    <div className="text-gray-500 text-sm">{testimonial.role}</div>
-                  </div>
-                </div>
-                <p className="text-gray-700 leading-relaxed">"{testimonial.text}"</p>
-              </div>
-            ))}
+            <p className="text-xs uppercase tracking-[0.45em] text-lime-300">Client Love</p>
+            <h2 className="mt-4 text-4xl font-semibold leading-tight text-white md:text-5xl">
+              What people are saying
+            </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-blue-200">
+              Hear from the creative teams and brands who trust us with their story
+            </p>
           </motion.div>
-        </div>
 
-        {/* Second Row - Right to Left */}
-        <div className="flex overflow-hidden">
-          <motion.div
-            className="flex gap-6"
-            animate={{
-              x: [-1920, 0],
-            }}
-            transition={{
-              duration: 30,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          >
-            {[...testimonials, ...testimonials, ...testimonials].map((testimonial, index) => (
-              <div
-                key={`row2-${index}`}
-                className="flex-shrink-0 w-[400px] bg-white rounded-2xl p-6 shadow-lg border border-gray-100"
-              >
-                <div className="flex items-center gap-4 mb-4">
-                  <img
-                    src={testimonial.image}
-                    alt={testimonial.author}
-                    className="w-16 h-16 rounded-full object-cover"
-                  />
-                  <div>
-                    <div className="text-gray-900">{testimonial.author}</div>
-                    <div className="text-gray-500 text-sm">{testimonial.role}</div>
-                  </div>
+          <div className="mt-16 flex flex-col items-center gap-10">
+            <div className="relative w-full flex justify-center">
+              <div className="ferris-wheel ferris-wheel--arc" style={wheelStyle}>
+                <div className="ferris-wheel__halo" />
+                <div className="ferris-wheel__rotor">
+                  {testimonials.map((testimonial, index) => {
+                    const angle = (index / testimonials.length) * 360
+
+                    return (
+                      <div
+                        key={testimonial.id}
+                        className="ferris-wheel__orbit"
+                        style={{
+                          transform: `translate(-50%, -50%) rotate(${angle}deg) translateY(calc(-1 * var(--wheel-radius)))`,
+                        }}
+                      >
+                        <div
+                          className="ferris-wheel__testimonial-shell"
+                          style={{ transform: `rotate(${-angle}deg)` }}
+                        >
+                          <div className="ferris-wheel__testimonial ferris-wheel__avatar--counter">
+                            <img src={testimonial.image} alt={testimonial.author} loading="lazy" />
+                            <div>
+                              <p>{testimonial.author}</p>
+                              <span>{testimonial.role}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  })}
                 </div>
-                <p className="text-gray-700 leading-relaxed">"{testimonial.text}"</p>
               </div>
-            ))}
-          </motion.div>
-        </div>
+            </div>
+          </div>
+        </ScrollAnimationWrapper>
       </div>
     </section>
   )
