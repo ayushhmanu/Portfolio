@@ -126,8 +126,8 @@ interface ProcessCardProps {
 const ProcessCard = ({ step, variant }: ProcessCardProps) => {
   const sizing =
     variant === "desktop"
-  ? "h-[65vh] min-h-[420px] w-[60vw] min-w-[520px] max-w-[780px]"
-  : "h-auto w-[80vw] min-w-[260px] max-w-[360px]"
+      ? "h-[65vh] min-h-[420px] w-[60vw] min-w-[520px] max-w-[780px]"
+      : "h-auto w-[80vw] min-w-[260px] max-w-[360px]"
   const snapClass = variant === "mobile" ? "snap-center" : ""
 
   return (
@@ -141,12 +141,15 @@ const ProcessCard = ({ step, variant }: ProcessCardProps) => {
         className="absolute inset-0 h-full w-full object-cover"
       />
       <div className="absolute inset-0 bg-black/70" />
-      <div className="absolute inset-0 opacity-40" style={{
-        backgroundImage:
-          "radial-gradient(circle at 20% 20%, rgba(255,255,255,0.3), transparent 45%), radial-gradient(circle at 80% 10%, rgba(239,68,68,0.3), transparent 60%)",
-      }} />
+      <div
+        className="absolute inset-0 opacity-40"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 20% 20%, rgba(255,255,255,0.3), transparent 45%), radial-gradient(circle at 80% 10%, rgba(239,68,68,0.3), transparent 60%)",
+        }}
+      />
 
-  <div className="relative z-10 flex h-full flex-col justify-between gap-6 p-6 sm:p-8 md:p-10">
+      <div className="relative z-10 flex h-full flex-col justify-between gap-6 p-6 sm:p-8 md:p-10">
         <div className="flex items-center justify-between text-xs uppercase tracking-[0.4em] text-white/60">
           <span>{step.subtitle}</span>
           <span className="rounded-full border border-white/30 px-3 py-1 text-[0.65rem] tracking-[0.2em]">
@@ -155,15 +158,21 @@ const ProcessCard = ({ step, variant }: ProcessCardProps) => {
         </div>
 
         <div>
-          <div className={`mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-linear-to-br ${step.accent} text-black shadow-2xl`}>
+          <div
+            className={`mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-linear-to-br ${step.accent} text-black shadow-2xl`}
+          >
             <step.icon className="h-6 w-6" />
           </div>
           <h3 className="handwriting text-4xl leading-tight md:text-5xl">{step.title}</h3>
-          <p className="mt-4 text-base leading-relaxed text-white/70 md:text-lg">{step.description}</p>
+          <p className="mt-4 text-base leading-relaxed text-white/70 md:text-lg">
+            {step.description}
+          </p>
         </div>
 
         <div className="relative mt-4 h-1.5 overflow-hidden rounded-full bg-white/20">
-          <div className={`absolute inset-y-0 left-0 w-full origin-left scale-x-100 rounded-full bg-linear-to-r ${step.accent} transition-transform duration-500 group-hover:scale-x-110`} />
+          <div
+            className={`absolute inset-y-0 left-0 w-full origin-left scale-x-100 rounded-full bg-linear-to-r ${step.accent} transition-transform duration-500 group-hover:scale-x-110`}
+          />
         </div>
       </div>
     </article>
@@ -181,7 +190,12 @@ const BtsImageCard = ({ image, variant }: BtsImageCardProps) => {
     <figure
       className={`relative overflow-hidden rounded-[28px] border border-white/10 bg-white/5 text-white shadow-[0_20px_60px_-40px_rgba(0,0,0,1)] ${sizing}`}
     >
-      <img src={image.src} alt={image.label} className="h-full w-full object-cover" loading="lazy" />
+      <img
+        src={image.src}
+        alt={image.label}
+        className="h-full w-full object-cover"
+        loading="lazy"
+      />
       <figcaption className="absolute inset-x-3 bottom-3 rounded-2xl bg-black/60 px-4 py-2 text-xs uppercase tracking-[0.3em] text-white/80">
         <div className="flex items-center justify-between text-[0.6rem]">
           <span>{image.label}</span>
@@ -251,18 +265,26 @@ export function ProcessTimeline() {
 
   if (!isDesktop) {
     return (
-  <section ref={containerRef} className="relative overflow-hidden bg-[#040404] py-20 text-white">
+      <section
+        ref={containerRef}
+        className="relative overflow-hidden bg-[#040404] py-20 text-white"
+      >
         <div className="absolute inset-0 bg-linear-to-b from-black via-black/90 to-black/60" />
-        <div className="absolute inset-0 opacity-20" style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)",
-          backgroundSize: "140px 140px",
-        }} />
+        <div
+          className="absolute inset-0 opacity-20"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)",
+            backgroundSize: "140px 140px",
+          }}
+        />
 
-  <div className="relative z-10 mx-auto max-w-screen-sm space-y-4 px-4 sm:px-6">
+        <div className="relative z-10 mx-auto max-w-screen-sm space-y-4 px-4 sm:px-6">
           <p className="text-xs uppercase tracking-[0.4em] text-red-300">Process</p>
           <h2 className="handwriting text-5xl leading-tight">How the films come together</h2>
-          <p className="text-white/70">Swipe horizontally to peek at every stage from discovery through delivery.</p>
+          <p className="text-white/70">
+            Swipe horizontally to peek at every stage from discovery through delivery.
+          </p>
         </div>
 
         <div className="relative mt-10 pl-4 sm:pl-8">
@@ -291,28 +313,38 @@ export function ProcessTimeline() {
   }
 
   return (
-    <section ref={containerRef} className="relative min-h-screen overflow-hidden bg-[#020202] text-white">
+    <section
+      ref={containerRef}
+      className="relative min-h-screen overflow-hidden bg-[#020202] text-white"
+    >
       <div className="absolute inset-0 bg-linear-to-b from-black via-black/90 to-[#050505]" />
-      <div className="absolute inset-0 opacity-10" style={{
-        backgroundImage:
-          "radial-gradient(circle at 25% 20%, rgba(239,68,68,0.2), transparent 40%), radial-gradient(circle at 70% 0%, rgba(255,255,255,0.15), transparent 45%)",
-      }} />
-      <div className="absolute inset-0 opacity-10" style={{
-        backgroundImage:
-          "linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)",
-        backgroundSize: "220px 220px",
-      }} />
+      <div
+        className="absolute inset-0 opacity-10"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 25% 20%, rgba(239,68,68,0.2), transparent 40%), radial-gradient(circle at 70% 0%, rgba(255,255,255,0.15), transparent 45%)",
+        }}
+      />
+      <div
+        className="absolute inset-0 opacity-10"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)",
+          backgroundSize: "220px 220px",
+        }}
+      />
 
       <div className="relative z-10 flex h-screen flex-col">
-  <header className="mx-auto w-full max-w-screen-2xl px-6 pt-16 pb-12 md:px-12 lg:px-24">
+        <header className="mx-auto w-full max-w-screen-2xl px-6 pt-16 pb-12 md:px-12 lg:px-24">
           <p className="text-xs uppercase tracking-[0.5em] text-red-400">Process</p>
           <div className="mt-6 flex flex-col gap-4 md:flex-row md:items-end md:gap-12">
             <h2 className="handwriting text-5xl leading-tight md:text-6xl lg:text-[4.5rem]">
               Scroll to move behind the scenes
             </h2>
             <p className="max-w-2xl text-base text-white/70">
-              The section pins itself once it fills the viewport, then the timeline glides sideways revealing
-              every milestone with luxurious pacing. Keep scrolling to resume the page once you pass delivery.
+              The section pins itself once it fills the viewport, then the timeline glides sideways
+              revealing every milestone with luxurious pacing. Keep scrolling to resume the page
+              once you pass delivery.
             </p>
           </div>
         </header>
@@ -333,14 +365,20 @@ export function ProcessTimeline() {
           <div className="pointer-events-none absolute inset-y-0 left-0 w-28 bg-linear-to-r from-[#020202] via-[#020202]/80 to-transparent" />
           <div className="pointer-events-none absolute inset-y-0 right-0 w-28 bg-linear-to-l from-[#020202] via-[#020202]/80 to-transparent" />
 
-          <div ref={trackRef} className="flex h-full items-center gap-12 px-6 md:px-12 lg:px-24 pr-[65vw] will-change-transform">
+          <div
+            ref={trackRef}
+            className="flex h-full items-center gap-12 px-6 md:px-12 lg:px-24 pr-[65vw] will-change-transform"
+          >
             {steps.map((step) => (
               <ProcessCard key={step.id} step={step} variant="desktop" />
             ))}
           </div>
 
           <div className="absolute bottom-10 left-6 right-6 h-1.5 rounded-full bg-white/10 md:left-12 md:right-12">
-            <div ref={progressRef} className="h-full w-full origin-left scale-x-0 rounded-full bg-linear-to-r from-red-600 via-white to-red-500" />
+            <div
+              ref={progressRef}
+              className="h-full w-full origin-left scale-x-0 rounded-full bg-linear-to-r from-red-600 via-white to-red-500"
+            />
           </div>
         </div>
       </div>

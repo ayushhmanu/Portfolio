@@ -218,18 +218,26 @@ export function HorizontalProjects() {
 
   if (!isDesktop) {
     return (
-      <section ref={containerRef} className="relative overflow-hidden bg-[#050505] py-20 text-white">
-    <div className="absolute inset-0 bg-linear-to-b from-black via-black/90 to-black/70" />
-        <div className="absolute inset-0 opacity-20" style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)",
-          backgroundSize: "160px 160px",
-        }} />
+      <section
+        ref={containerRef}
+        className="relative overflow-hidden bg-[#050505] py-20 text-white"
+      >
+        <div className="absolute inset-0 bg-linear-to-b from-black via-black/90 to-black/70" />
+        <div
+          className="absolute inset-0 opacity-20"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)",
+            backgroundSize: "160px 160px",
+          }}
+        />
 
-  <div className="relative z-10 mx-auto max-w-screen-sm space-y-4 px-4 sm:px-6">
+        <div className="relative z-10 mx-auto max-w-screen-sm space-y-4 px-4 sm:px-6">
           <p className="text-xs uppercase tracking-[0.4em] text-red-300">Featured Work</p>
           <h2 className="handwriting text-5xl leading-tight">Swipe through the reel</h2>
-          <p className="text-white/70">Drag sideways to browse hero projects crafted for bold brands.</p>
+          <p className="text-white/70">
+            Drag sideways to browse hero projects crafted for bold brands.
+          </p>
         </div>
 
         <div className="relative mt-10 pl-4 sm:pl-8">
@@ -246,17 +254,26 @@ export function HorizontalProjects() {
   }
 
   return (
-    <section ref={containerRef} className="relative min-h-screen overflow-hidden bg-[#030303] text-white">
-  <div className="absolute inset-0 bg-linear-to-b from-black via-black/90 to-[#050505]" />
-      <div className="absolute inset-0 opacity-10" style={{
-        backgroundImage:
-          "radial-gradient(circle at 20% 20%, rgba(239,68,68,0.15), transparent 40%), radial-gradient(circle at 80% 0%, rgba(255,255,255,0.12), transparent 45%)",
-      }} />
-      <div className="absolute inset-0 opacity-15" style={{
-        backgroundImage:
-          "linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)",
-        backgroundSize: "200px 200px",
-      }} />
+    <section
+      ref={containerRef}
+      className="relative min-h-screen overflow-hidden bg-[#030303] text-white"
+    >
+      <div className="absolute inset-0 bg-linear-to-b from-black via-black/90 to-[#050505]" />
+      <div
+        className="absolute inset-0 opacity-10"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 20% 20%, rgba(239,68,68,0.15), transparent 40%), radial-gradient(circle at 80% 0%, rgba(255,255,255,0.12), transparent 45%)",
+        }}
+      />
+      <div
+        className="absolute inset-0 opacity-15"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)",
+          backgroundSize: "200px 200px",
+        }}
+      />
 
       <div className="relative z-10 flex h-screen flex-col">
         <header className="mx-auto w-full max-w-screen-2xl px-6 pt-16 pb-10 md:px-12 lg:px-24">
@@ -266,8 +283,9 @@ export function HorizontalProjects() {
               Scroll to glide through the reel
             </h2>
             <p className="max-w-xl text-base text-white/70">
-              The section locks in place the moment it fills your screen, then glides sideways revealing
-              every hero project with a cinematic pace. Keep scrolling to exit once you reach the end.
+              The section locks in place the moment it fills your screen, then glides sideways
+              revealing every hero project with a cinematic pace. Keep scrolling to exit once you
+              reach the end.
             </p>
           </div>
         </header>
@@ -286,7 +304,10 @@ export function HorizontalProjects() {
           </div>
 
           <div className="absolute bottom-10 left-4 right-4 h-1.5 rounded-full bg-white/10 md:left-12 md:right-12">
-            <div ref={progressRef} className="h-full w-full origin-left scale-x-0 rounded-full bg-linear-to-r from-red-600 via-white to-red-500" />
+            <div
+              ref={progressRef}
+              className="h-full w-full origin-left scale-x-0 rounded-full bg-linear-to-r from-red-600 via-white to-red-500"
+            />
           </div>
         </div>
       </div>
