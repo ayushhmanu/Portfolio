@@ -158,10 +158,10 @@ export function FloatingDoodles() {
         }}
       />
       <motion.div
-        className="absolute bottom-20 right-10 w-96 h-96 bg-black/5 rounded-full blur-3xl"
+        className="absolute bottom-20 right-10 w-96 h-96 bg-white/5 rounded-full blur-3xl"
         animate={{
           scale: [1.2, 1, 1.2],
-          opacity: [0.3, 0.5, 0.3],
+          opacity: [0.1, 0.2, 0.1],
         }}
         transition={{
           duration: 10,

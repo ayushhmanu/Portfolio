@@ -1,133 +1,202 @@
-import { useState } from "react"
-import { ChevronLeft, ChevronRight } from "lucide-react"
-import { ScrollAnimationWrapper } from "./scroll-animation-wrapper"
-import { motion, AnimatePresence } from "motion/react"
+import { motion } from "motion/react"
 
-const projects = [
+const longFormProjects = [
   {
     id: 1,
-    title: "Project 1",
-    videoUrl:
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-    description: "A cinematic journey through visual storytelling",
+    title: "THE ART OF EDITING",
+    category: "DOCUMENTARY",
+    duration: "12:45",
+    image: "https://images.unsplash.com/photo-1579165466741-7f35e4755652?w=800&h=600&fit=crop",
+    description:
+      "A deep dive into the psychology of film editing and how it shapes the narrative structure.",
   },
   {
     id: 2,
-    title: "Project 2",
-    videoUrl:
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-    description: "Creative excellence meets technical precision",
+    title: "URBAN EXPLORATION",
+    category: "VLOG SERIES",
+    duration: "08:20",
+    image: "https://images.unsplash.com/photo-1518066000714-58c45f1a2c0a?w=800&h=600&fit=crop",
+    description: "Exploring the abandoned spaces of the city, uncovering stories lost to time.",
   },
   {
     id: 3,
-    title: "Project 3",
-    videoUrl:
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-    description: "Bringing ideas to life through motion",
+    title: "CULINARY JOURNEY",
+    category: "LIFESTYLE",
+    duration: "15:30",
+    image: "https://images.unsplash.com/photo-1556910103-1c02745a30bf?w=800&h=600&fit=crop",
+    description:
+      "Following a master chef through the chaotic yet beautiful process of creating a signature dish.",
+  },
+]
+
+const shortFormProjects = [
+  {
+    id: 1,
+    title: "NIKE COMMERCIAL",
+    category: "AD",
+    views: "1.2M",
+    image: "https://images.unsplash.com/photo-1552346154-21d32810aba3?w=400&h=700&fit=crop",
+  },
+  {
+    id: 2,
+    title: "TRAVEL REEL",
+    category: "LIFESTYLE",
+    views: "850K",
+    image: "https://images.unsplash.com/photo-1527631746610-bca00a040d60?w=400&h=700&fit=crop",
+  },
+  {
+    id: 3,
+    title: "FITNESS MOTIVATION",
+    category: "SPORTS",
+    views: "2.5M",
+    image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=400&h=700&fit=crop",
   },
 ]
 
 export function LongVideoProjects() {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [direction, setDirection] = useState(0)
-
-  const handlePrev = () => {
-    setDirection(-1)
-    setCurrentIndex((prev) => (prev === 0 ? projects.length - 1 : prev - 1))
-  }
-
-  const handleNext = () => {
-    setDirection(1)
-    setCurrentIndex((prev) => (prev === projects.length - 1 ? 0 : prev + 1))
-  }
-
   return (
-    <section id="work" className="relative py-24 bg-white">
+    <section className="pt-0 pb-32 bg-black text-white relative z-10">
       <div className="container mx-auto px-6">
-        <ScrollAnimationWrapper>
-          <div className="max-w-6xl mx-auto">
-            {/* Title */}
-            <div className="text-center mb-16">
-              <h2 className="handwriting text-5xl md:text-6xl text-gray-900 mb-4">
-                Long Video Projects
-              </h2>
-              <p className="text-gray-600 text-lg">Crafted with passion and precision</p>
-            </div>
+        {/* Long Form Section */}
+        <div className="mb-20 pt-20">
+          <h2 className="font-display text-6xl md:text-8xl font-bold tracking-tighter mb-6">
+            LONG FORM
+            <br />
+            <span className="text-red-600">STORIES</span>
+          </h2>
+          <div className="h-1 w-20 bg-red-600"></div>
+        </div>
 
-            {/* Carousel */}
-            <div className="relative flex items-center gap-6">
-              {/* Left Arrow */}
-              <motion.button
-                onClick={handlePrev}
-                className="flex-shrink-0 w-14 h-14 rounded-full bg-white shadow-lg flex items-center justify-center text-red-600 hover:bg-red-600 hover:text-white transition-all z-10 border border-gray-100"
-                whileHover={{ scale: 1.1, x: -5 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <ChevronLeft className="w-7 h-7" />
-              </motion.button>
+        <div className="flex flex-col gap-32 mb-40">
+          {longFormProjects.map((project, index) => (
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-10%" }}
+              transition={{ duration: 0.8 }}
+              className={`flex flex-col ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} gap-12 items-center`}
+            >
+              {/* Video Thumbnail / Preview */}
+              <div className="w-full md:w-3/5 relative group cursor-pointer">
+                <div className="relative overflow-hidden aspect-video bg-neutral-900 border border-white/10">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100"
+                  />
 
-              {/* Video Player */}
-              <div className="flex-1 bg-gray-900 rounded-3xl overflow-hidden shadow-2xl relative">
-                <div className="aspect-video relative">
-                  <AnimatePresence initial={false} mode="wait" custom={direction}>
-                    <motion.video
-                      key={projects[currentIndex].id}
-                      custom={direction}
-                      initial={{ opacity: 0, x: direction > 0 ? 100 : -100 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: direction > 0 ? -100 : 100 }}
-                      transition={{ duration: 0.5, ease: [0.21, 0.47, 0.32, 0.98] }}
-                      className="w-full h-full object-cover absolute inset-0"
-                      controls
-                    >
-                      <source src={projects[currentIndex].videoUrl} type="video/mp4" />
-                    </motion.video>
-                  </AnimatePresence>
+                  {/* Play Button Overlay */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-20 h-20 rounded-full border border-white/30 flex items-center justify-center backdrop-blur-sm group-hover:scale-110 transition-transform duration-300 bg-black/20">
+                      <div className="w-0 h-0 border-t-10 border-t-transparent border-l-18 border-l-white border-b-10 border-b-transparent ml-1"></div>
+                    </div>
+                  </div>
+
+                  {/* Duration Badge */}
+                  <div className="absolute bottom-4 right-4 px-3 py-1 bg-black/80 backdrop-blur-md border border-white/10 text-xs font-mono">
+                    {project.duration}
+                  </div>
                 </div>
-
-                {/* Project Info Overlay */}
-                <motion.div
-                  key={projects[currentIndex].id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 }}
-                  className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6"
-                >
-                  <h3 className="handwriting text-white text-3xl mb-2">
-                    {projects[currentIndex].title}
-                  </h3>
-                  <p className="text-gray-300">{projects[currentIndex].description}</p>
-                </motion.div>
               </div>
 
-              {/* Right Arrow */}
-              <motion.button
-                onClick={handleNext}
-                className="flex-shrink-0 w-14 h-14 rounded-full bg-white shadow-lg flex items-center justify-center text-red-600 hover:bg-red-600 hover:text-white transition-all z-10 border border-gray-100"
-                whileHover={{ scale: 1.1, x: 5 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <ChevronRight className="w-7 h-7" />
-              </motion.button>
-            </div>
+              {/* Content */}
+              <div className="w-full md:w-2/5">
+                <div className="flex items-center gap-4 mb-4">
+                  <span className="h-px w-10 bg-red-600"></span>
+                  <span className="text-xs font-bold tracking-widest uppercase text-red-500">
+                    {project.category}
+                  </span>
+                </div>
 
-            {/* Indicators */}
-            <div className="flex justify-center gap-2 mt-8">
-              {projects.map((_, index) => (
+                <h3 className="font-display text-4xl md:text-5xl font-bold mb-6 group-hover:text-red-500 transition-colors">
+                  {project.title}
+                </h3>
+
+                <p className="text-white/60 text-lg leading-relaxed mb-8">{project.description}</p>
+
                 <button
-                  key={index}
-                  onClick={() => {
-                    setDirection(index > currentIndex ? 1 : -1)
-                    setCurrentIndex(index)
-                  }}
-                  className={`h-2 rounded-full transition-all ${
-                    index === currentIndex ? "w-8 bg-red-600" : "w-2 bg-gray-300 hover:bg-gray-400"
-                  }`}
+                  type="button"
+                  className="text-sm uppercase tracking-widest border-b border-white/30 pb-1 hover:text-red-500 hover:border-red-500 transition-colors"
+                >
+                  Watch Video
+                </button>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Short Form Section */}
+        <div className="mb-20">
+          <h2 className="font-display text-6xl md:text-8xl font-bold tracking-tighter mb-6 text-right">
+            SHORT FORM
+            <br />
+            <span className="text-red-600">CONTENT</span>
+          </h2>
+          <div className="h-1 w-20 bg-red-600 ml-auto"></div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {shortFormProjects.map((project, index) => (
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-10%" }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="group relative cursor-pointer"
+            >
+              <div className="relative overflow-hidden aspect-9/16 bg-neutral-900 border border-white/10">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100"
                 />
-              ))}
-            </div>
-          </div>
-        </ScrollAnimationWrapper>
+
+                {/* Overlay Gradient */}
+                <div className="absolute inset-0 bg-linear-to-t from-black/90 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
+
+                {/* Play Icon */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="w-16 h-16 rounded-full bg-red-600/90 flex items-center justify-center backdrop-blur-sm">
+                    <div className="w-0 h-0 border-t-8 border-t-transparent border-l-14 border-l-white border-b-8 border-b-transparent ml-1"></div>
+                  </div>
+                </div>
+
+                {/* Content Overlay */}
+                <div className="absolute bottom-0 left-0 w-full p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-xs font-bold tracking-widest uppercase text-red-500">
+                      {project.category}
+                    </span>
+                    <span className="text-xs font-mono text-white/60 flex items-center gap-1">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="12"
+                        height="12"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        aria-label="Views"
+                      >
+                        <title>Views</title>
+                        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+                        <circle cx="12" cy="12" r="3" />
+                      </svg>
+                      {project.views}
+                    </span>
+                  </div>
+                  <h3 className="font-display text-2xl font-bold text-white mb-1">
+                    {project.title}
+                  </h3>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   )

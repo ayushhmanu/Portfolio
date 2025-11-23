@@ -1,104 +1,38 @@
-import { Youtube, Instagram, Twitter, Mail } from "lucide-react"
-import { motion } from "motion/react"
-
-const BRAND_NAME = "Ayush Manu"
-const CONTACT_EMAIL = "hello@ayushmanu.studio"
-
 export function Footer() {
   return (
-    <footer id="contacts" className="relative py-16 bg-white border-t border-gray-200">
+    <footer className="bg-black text-white py-20 border-t border-white/10">
       <div className="container mx-auto px-6">
-        <div className="max-w-4xl mx-auto">
-          {/* Main Content */}
-          <div className="grid md:grid-cols-2 gap-12 mb-12">
-            {/* Left Side - Brand & Description */}
-            <motion.div
-              className="space-y-6"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-12">
+          <div>
+            <h2 className="font-display text-6xl md:text-8xl font-bold tracking-tighter mb-6">
+              LET'S CREATE
+              <br />
+              <span className="text-red-600">TOGETHER</span>
+            </h2>
+            <a
+              href="mailto:hello@ayushmanu.studio"
+              className="text-xl md:text-2xl text-white/60 hover:text-white transition-colors border-b border-white/20 pb-1"
             >
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-red-600 shadow-lg"></div>
-                <span className="handwriting text-gray-900 text-3xl">{BRAND_NAME}</span>
-              </div>
-              <p className="text-gray-600 leading-relaxed">
-                Video editor & creative partner helping indie brands and artists translate real
-                stories into cinematic experiences that feel tailor-made by Ayush Manu.
-              </p>
-            </motion.div>
-
-            {/* Right Side - Contact & Social */}
-            <motion.div
-              className="space-y-6"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-            >
-              <div>
-                <h3 className="text-gray-900 mb-4">Get In Touch</h3>
-                <a
-                  href={`mailto:${CONTACT_EMAIL}`}
-                  className="flex items-center gap-3 text-gray-600 hover:text-red-600 transition-colors group"
-                >
-                  <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center group-hover:bg-red-50 transition-colors">
-                    <Mail className="w-5 h-5" />
-                  </div>
-                  <span className="text-sm">{CONTACT_EMAIL}</span>
-                </a>
-              </div>
-
-              {/* Social Links */}
-              <div>
-                <h3 className="text-gray-900 mb-4">Follow</h3>
-                <div className="flex gap-3">
-                  <motion.a
-                    href="https://www.youtube.com/@ayushmanu"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-red-600 hover:text-white transition-all"
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    whileTap={{ scale: 0.9 }}
-                  >
-                    <Youtube className="w-5 h-5" />
-                  </motion.a>
-                  <motion.a
-                    href="https://www.instagram.com/ayush.manu"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-red-600 hover:text-white transition-all"
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    whileTap={{ scale: 0.9 }}
-                  >
-                    <Instagram className="w-5 h-5" />
-                  </motion.a>
-                  <motion.a
-                    href="https://twitter.com/ayushmanufilms"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-red-600 hover:text-white transition-all"
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    whileTap={{ scale: 0.9 }}
-                  >
-                    <Twitter className="w-5 h-5" />
-                  </motion.a>
-                </div>
-              </div>
-            </motion.div>
+              hello@ayushmanu.studio
+            </a>
           </div>
 
-          {/* Bottom Bar */}
-          <motion.div
-            className="pt-8 border-t border-gray-200 text-center"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <p className="text-gray-500 text-sm">© 2025 {BRAND_NAME}. All rights reserved.</p>
-          </motion.div>
+          <div className="flex flex-col gap-4 text-right">
+            {["Instagram", "Twitter", "YouTube", "LinkedIn"].map((social) => (
+              <a
+                key={social}
+                href={`https://${social.toLowerCase()}.com`}
+                className="text-sm uppercase tracking-widest text-white/40 hover:text-red-500 transition-colors"
+              >
+                {social}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-20 pt-8 border-t border-white/10 flex justify-between items-center text-xs text-white/20 uppercase tracking-widest">
+          <p>© 2025 AYUSH MANU</p>
+          <p>ALL RIGHTS RESERVED</p>
         </div>
       </div>
     </footer>

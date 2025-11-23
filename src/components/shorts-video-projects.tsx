@@ -1,5 +1,3 @@
-import { useState } from "react"
-import { ChevronLeft, ChevronRight } from "lucide-react"
 import { ScrollAnimationWrapper } from "./scroll-animation-wrapper"
 import { motion } from "motion/react"
 
@@ -35,74 +33,53 @@ const shorts = [
 ]
 
 export function ShortsVideoProjects() {
-  const [startIndex, setStartIndex] = useState(0)
-
-  const handlePrev = () => {
-    setStartIndex((prev) => (prev === 0 ? shorts.length - 3 : prev - 1))
-  }
-
-  const handleNext = () => {
-    setStartIndex((prev) => (prev >= shorts.length - 3 ? 0 : prev + 1))
-  }
-
-  const visibleShorts = shorts.slice(startIndex, startIndex + 3)
-
   return (
-    <section className="relative py-24 bg-gray-50">
+    <section className="relative py-32 bg-[#020202] text-white overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute top-0 left-0 w-full h-px bg-linear-to-r from-transparent via-red-900/50 to-transparent" />
+
       <div className="container mx-auto px-6">
         <ScrollAnimationWrapper>
-          <div className="max-w-6xl mx-auto">
-            {/* Title */}
-            <div className="text-center mb-16">
-              <h2 className="handwriting text-5xl md:text-6xl text-gray-900 mb-4">
-                Short Form Content
-              </h2>
-              <p className="text-gray-600 text-lg">Quick, impactful, memorable</p>
+          <div className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8">
+            <div>
+              <p className="text-red-500 uppercase tracking-[0.5em] text-sm mb-4">Social Content</p>
+              <h2 className="handwriting text-6xl md:text-7xl text-white">Shorts & Reels</h2>
             </div>
+            <p className="text-white/60 text-lg max-w-md text-right md:text-left">
+              High-impact vertical content designed to stop the scroll and engage audiences
+              instantly.
+            </p>
+          </div>
 
-            {/* Carousel */}
-            <div className="relative flex items-center gap-6">
-              {/* Left Arrow */}
-              <motion.button
-                onClick={handlePrev}
-                className="flex-shrink-0 w-14 h-14 rounded-full bg-white shadow-lg flex items-center justify-center text-red-600 hover:bg-red-600 hover:text-white transition-all z-10 border border-gray-100"
-                whileHover={{ scale: 1.1, x: -5 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <ChevronLeft className="w-7 h-7" />
-              </motion.button>
-
-              {/* Video Players Grid */}
-              <div className="flex-1 grid grid-cols-3 gap-6">
-                {visibleShorts.map((short, index) => (
-                  <motion.div
-                    key={short.id}
-                    className="aspect-[9/16] bg-gray-900 rounded-2xl overflow-hidden shadow-xl"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                      duration: 0.5,
-                      delay: index * 0.1,
-                      ease: [0.21, 0.47, 0.32, 0.98],
-                    }}
-                    whileHover={{ scale: 1.05, y: -10, rotateY: 5 }}
+          {/* Horizontal Scroll Container */}
+          <div className="relative -mx-6 px-6 overflow-x-auto pb-12 hide-scrollbar">
+            <div className="flex gap-8 w-max">
+              {shorts.map((short, index) => (
+                <motion.div
+                  key={short.id}
+                  initial={{ opacity: 0, x: 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="relative group w-[300px] md:w-[360px] aspect-9/16 rounded-2xl overflow-hidden bg-neutral-900 shadow-2xl ring-1 ring-white/10"
+                >
+                  <video
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    controls
+                    preload="metadata"
                   >
-                    <video className="w-full h-full object-cover" controls>
-                      <source src={short.videoUrl} type="video/mp4" />
-                    </video>
-                  </motion.div>
-                ))}
-              </div>
+                    <source src={short.videoUrl} type="video/mp4" />
+                    <track kind="captions" />
+                  </video>
 
-              {/* Right Arrow */}
-              <motion.button
-                onClick={handleNext}
-                className="flex-shrink-0 w-14 h-14 rounded-full bg-white shadow-lg flex items-center justify-center text-red-600 hover:bg-red-600 hover:text-white transition-all z-10 border border-gray-100"
-                whileHover={{ scale: 1.1, x: 5 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <ChevronRight className="w-7 h-7" />
-              </motion.button>
+                  <div className="absolute inset-0 pointer-events-none bg-linear-to-b from-transparent via-transparent to-black/80 opacity-60" />
+
+                  <div className="absolute bottom-0 left-0 right-0 p-6 pointer-events-none">
+                    <h3 className="text-xl font-bold text-white mb-1">{short.title}</h3>
+                    <p className="text-red-400 text-xs uppercase tracking-widest">Watch Reel</p>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
         </ScrollAnimationWrapper>

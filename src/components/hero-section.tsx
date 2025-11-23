@@ -1,107 +1,217 @@
-import { motion, useScroll, useTransform } from "motion/react"
-import { useRef } from "react"
+import { useEffect, useRef, useState } from "react"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 
-const HERO_VIDEO_SRC = "https://www.pexels.com/download/video/27601318/"
+gsap.registerPlugin(ScrollTrigger)
+
+const LOADING_FONTS = [
+  "Times New Roman",
+  "Courier New",
+  "Brush Script MT",
+  "Arial",
+  "Impact",
+  "Georgia",
+  "Verdana",
+  "Trebuchet MS",
+]
 
 export function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"],
-  })
+  const maskRef = useRef<HTMLDivElement>(null)
+  const targetRef = useRef<HTMLSpanElement>(null)
+  const [currentFont, setCurrentFont] = useState("var(--font-display)")
+  const [isLoaded, setIsLoaded] = useState(false)
 
-  const videoWidth = useTransform(scrollYProgress, [0, 0.3], ["97%", "100%"])
-  const videoBorderRadius = useTransform(scrollYProgress, [0, 0.3], ["24px", "0px"])
-  const textOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0])
-  const textY = useTransform(scrollYProgress, [0, 0.2], [0, -50])
+  // Font Roulette Effect
+  useEffect(() => {
+    let interval: NodeJS.Timeout
+    let timeout: NodeJS.Timeout
+
+    const startRoulette = () => {
+      let counter = 0
+      interval = setInterval(() => {
+        setCurrentFont(LOADING_FONTS[counter % LOADING_FONTS.length])
+        counter++
+      }, 50) // Rapid change every 50ms
+
+      // Stop after 2 seconds
+      timeout = setTimeout(() => {
+        clearInterval(interval)
+        setCurrentFont("var(--font-display)")
+        setIsLoaded(true)
+
+        // GSAP Fade Out for smoother transition
+        gsap.to(".hero-solid-cover", {
+          opacity: 0,
+          duration: 1.5,
+          ease: "power2.inOut",
+          onComplete: () => {
+            gsap.set(".hero-solid-cover", { pointerEvents: "none" })
+          },
+        })
+
+        // Reveal fade elements
+        gsap.to(".hero-fade-elements", {
+          opacity: 1,
+          duration: 1.5,
+          ease: "power2.out",
+          delay: 0.5,
+        })
+      }, 2000)
+    }
+
+    startRoulette()
+
+    return () => {
+      clearInterval(interval)
+      clearTimeout(timeout)
+    }
+  }, [])
+
+  useEffect(() => {
+    let ctx: gsap.Context
+
+    const initAnimation = () => {
+      ctx = gsap.context(() => {
+        // Calculate dynamic origin based on the target letter position
+        const getOrigin = () => {
+          if (!targetRef.current || !maskRef.current) return "59% 48%" // fallback
+          const targetRect = targetRef.current.getBoundingClientRect()
+          const maskRect = maskRef.current.getBoundingClientRect()
+
+          // Calculate center of target relative to the mask container
+          const x = targetRect.left + targetRect.width / 2 - maskRect.left
+          // Target the crossbar of the A (approx 52% down from top) to ensure we hit the white part
+          const y = targetRect.top + targetRect.height * 0.65 - maskRect.top
+
+          return `${x}px ${y}px`
+        }
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top top",
+            end: "+=300%", // Scroll distance of 300vh
+            scrub: 1,
+            pin: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+          },
+        })
+
+        // Scale the mask to zoom into the text
+        tl.to(maskRef.current, {
+          scale: 1500,
+          duration: 0.8, // Finish zoom at 80% of scroll to allow a moment of full video
+          ease: "power2.in",
+          transformOrigin: getOrigin(),
+        })
+
+        // Fade out elements early
+        tl.fromTo(
+          ".hero-fade-elements",
+          { opacity: 1 },
+          {
+            opacity: 0,
+            duration: 0.2,
+          },
+          0
+        )
+      }, containerRef)
+    }
+
+    initAnimation()
+
+    // Re-calculate on resize to ensure perfect centering
+    const handleResize = () => {
+      if (ctx) ctx.revert()
+      initAnimation()
+    }
+
+    window.addEventListener("resize", handleResize)
+
+    return () => {
+      if (ctx) ctx.revert()
+      window.removeEventListener("resize", handleResize)
+    }
+  }, [])
 
   return (
-    <section ref={containerRef} className="relative h-screen overflow-hidden bg-white">
-      {/* Video Container */}
-      <motion.div
-        className="relative h-full mx-auto overflow-hidden"
-        style={{
-          width: videoWidth,
-          borderRadius: videoBorderRadius,
-        }}
-        initial={{ width: "97%", borderRadius: "24px" }}
-      >
-        {/* Video Background */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          poster={HERO_VIDEO_SRC}
-          preload="auto"
-          className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source src={HERO_VIDEO_SRC} type="video/mp4" />
-        </video>
-
-        {/* Overlay for better text readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/80"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30"></div>
-        <div className="absolute inset-0 opacity-[0.15] mix-blend-soft-light bg-[url('https://www.transparenttextures.com/patterns/asfalt-light.png')]" />
-      </motion.div>
-
-      {/* Animated grid overlay */}
-      <div className="absolute inset-0 z-10 opacity-5">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(220, 38, 38, 0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(220, 38, 38, 0.5) 1px, transparent 1px)",
-            backgroundSize: "100px 100px",
-          }}
-        ></div>
-      </div>
-
-      {/* Hero Content - Centered on video */}
-      <motion.div
-        className="absolute inset-0 flex items-center justify-center z-20"
-        style={{ opacity: textOpacity, y: textY }}
-      >
-        <div className="text-center px-6 max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.5 }}
-          >
-            <h1 className="handwriting text-7xl md:text-9xl lg:text-[10rem] mb-8">
-              <span className="block text-white drop-shadow-2xl mb-2">Not Just a</span>
-              <span className="block text-red-500 drop-shadow-2xl">Video Editor</span>
-            </h1>
-          </motion.div>
-
-          <motion.p
-            className="text-white/90 text-xl md:text-2xl lg:text-3xl max-w-4xl mx-auto leading-relaxed drop-shadow-lg"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.8 }}
-          >
-            Crafting cinematic stories that captivate audiences and elevate brands through
-            <span className="text-red-400"> cutting-edge editing</span>,
-            <span className="text-white"> color grading</span>, and
-            <span className="text-red-300"> motion design</span>
-          </motion.p>
-
-          {/* Scroll indicator */}
-          <motion.div
-            className="absolute bottom-12 left-1/2 -translate-x-1/2"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1, y: [0, 10, 0] }}
-            transition={{
-              opacity: { delay: 1.5, duration: 0.5 },
-              y: { repeat: Infinity, duration: 2, ease: "easeInOut" },
-            }}
-          >
-            <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center p-2">
-              <div className="w-1 h-3 bg-white/70 rounded-full"></div>
-            </div>
-          </motion.div>
+    <section ref={containerRef} className="relative w-full h-screen bg-gray-900 overflow-hidden">
+      <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
+        {/* Layer 0: Fixed Video Background */}
+        <div className="absolute inset-0 z-0">
+          <video
+            className="w-full h-full object-cover opacity-80 mix-blend-overlay"
+            autoPlay
+            muted
+            loop
+            playsInline
+            src="https://www.pexels.com/download/video/6620640/"
+          />
+          <div className="absolute inset-0 opacity-40 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
         </div>
-      </motion.div>
+
+        {/* Layer 1: The Mask (Black BG + White Text) */}
+        {/* mix-blend-multiply: White Text reveals Video, Black BG hides Video */}
+        <div
+          ref={maskRef}
+          className="absolute inset-0 z-10 bg-black mix-blend-multiply flex flex-col items-center justify-center"
+        >
+          {/* VISUAL - Solid White to reveal full video */}
+          <h1 className="font-display text-[15vw] leading-[0.8] font-bold text-white tracking-tighter text-center whitespace-nowrap select-none">
+            VISU<span ref={targetRef}>A</span>L
+          </h1>
+
+          {/* STORYTELLER - Stroke effect */}
+          <h1 className="font-display text-[12vw] leading-[0.8] font-bold text-black tracking-tighter text-center whitespace-nowrap select-none -mt-2 md:-mt-6">
+            <span
+              className="text-transparent hover:text-red-600 transition-colors duration-500 cursor-default"
+              style={{ WebkitTextStroke: "1px white" }}
+            >
+              STORYTELLER
+            </span>
+          </h1>
+        </div>
+
+        {/* Layer 2: Loading Overlay (Solid Black + White/Outline Text) - Fades out after load */}
+        <div className="hero-solid-cover absolute inset-0 z-50 bg-zinc-900 flex flex-col items-center justify-center">
+          <div className="absolute inset-0 opacity-40 pointer-events-none"></div>
+          <h1
+            className="text-[15vw] leading-[0.8] font-bold text-white tracking-tighter text-center whitespace-nowrap select-none transition-all duration-300 relative z-10"
+            style={{ fontFamily: currentFont }}
+          >
+            VISUAL
+          </h1>
+          <h1
+            className="text-[12vw] leading-[0.8] font-bold text-black tracking-tighter text-center whitespace-nowrap select-none -mt-2 md:-mt-6 transition-all duration-300 relative z-10"
+            style={{ fontFamily: currentFont, WebkitTextStroke: "1px white" }}
+          >
+            STORYTELLER
+          </h1>
+        </div>
+
+        {/* Subtitle and Line - Fade out on scroll */}
+        <div className="hero-fade-elements opacity-0 absolute bottom-8 left-0 right-0 z-30 flex flex-col items-center gap-4 pointer-events-none">
+          <p className="text-white/60 text-sm md:text-base max-w-lg font-light tracking-wide text-center mix-blend-difference px-4">
+            Crafting cinematic experiences through precise editing and motion design.
+          </p>
+          <div className="h-12 w-px bg-linear-to-b from-red-600 to-transparent"></div>
+        </div>
+
+        {/* Floating Elements */}
+        <div className="hero-fade-elements opacity-0 absolute bottom-7 left-10 hidden md:block z-30">
+          <p className="font-display text-xs text-white/40 -rotate-90 origin-bottom-left tracking-widest mix-blend-difference">
+            EST. 2024
+          </p>
+        </div>
+
+        <div className="hero-fade-elements opacity-0 absolute bottom-7 right-10 hidden md:block z-30">
+          <p className="font-display text-xs text-white/40 tracking-widest mix-blend-difference">
+            SCROLL TO EXPLORE
+          </p>
+        </div>
+      </div>
     </section>
   )
 }

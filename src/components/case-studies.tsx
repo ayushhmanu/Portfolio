@@ -45,32 +45,34 @@ export function CaseStudies() {
   }
 
   return (
-    <section className="relative py-24 bg-white">
+    <section className="relative py-32 bg-[#050505] text-white">
       <div className="container mx-auto px-6">
         <ScrollAnimationWrapper>
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-7xl mx-auto">
             {/* Title */}
-            <div className="text-center mb-16">
-              <h2 className="handwriting text-5xl md:text-6xl bg-gradient-to-r from-red-500 via-red-700 to-black bg-clip-text text-transparent mb-4">
-                Case Studies
-              </h2>
-              <p className="text-gray-600 text-lg">Deep dives into successful projects</p>
+            <div className="text-center mb-20">
+              <p className="text-red-500 uppercase tracking-[0.5em] text-sm mb-4">
+                Behind the Scenes
+              </p>
+              <h2 className="handwriting text-6xl md:text-8xl text-white mb-6">Case Studies</h2>
+              <p className="text-white/60 text-lg">Deep dives into successful projects</p>
             </div>
 
             {/* Carousel */}
-            <div className="relative flex items-center gap-6">
+            <div className="relative flex items-center gap-8">
               {/* Left Arrow */}
               <motion.button
+                type="button"
                 onClick={handlePrev}
-                className="flex-shrink-0 w-14 h-14 rounded-full bg-white shadow-lg flex items-center justify-center text-red-600 hover:bg-red-600 hover:text-white transition-all z-10"
+                className="shrink-0 w-16 h-16 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-red-600 hover:border-red-600 transition-all z-10"
                 whileHover={{ scale: 1.1, x: -5 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <ChevronLeft className="w-7 h-7" />
+                <ChevronLeft className="w-8 h-8" />
               </motion.button>
 
               {/* Video Player */}
-              <div className="flex-1 bg-gray-900 rounded-3xl overflow-hidden shadow-2xl relative">
+              <div className="flex-1 bg-neutral-900 rounded-[2rem] overflow-hidden shadow-2xl relative ring-1 ring-white/10">
                 <div className="aspect-video relative">
                   <AnimatePresence initial={false} mode="wait" custom={direction}>
                     <motion.video
@@ -82,8 +84,10 @@ export function CaseStudies() {
                       transition={{ duration: 0.5, ease: [0.21, 0.47, 0.32, 0.98] }}
                       className="w-full h-full object-cover absolute inset-0"
                       controls
+                      preload="metadata"
                     >
                       <source src={caseStudies[currentIndex].videoUrl} type="video/mp4" />
+                      <track kind="captions" />
                     </motion.video>
                   </AnimatePresence>
                 </div>
@@ -94,17 +98,17 @@ export function CaseStudies() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
-                  className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6"
+                  className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/90 via-black/50 to-transparent p-8 md:p-12"
                 >
-                  <div className="flex items-center gap-3 mb-2">
-                    <span className="px-3 py-1 bg-red-600 text-white text-sm rounded-full">
+                  <div className="flex items-center gap-4 mb-4">
+                    <span className="px-4 py-1.5 bg-red-600 text-white text-xs font-bold uppercase tracking-widest rounded-full">
                       {caseStudies[currentIndex].category}
                     </span>
-                    <span className="text-gray-300 text-sm">
+                    <span className="text-white/80 text-sm uppercase tracking-widest border-l border-white/20 pl-4">
                       {caseStudies[currentIndex].client}
                     </span>
                   </div>
-                  <h3 className="handwriting text-white text-3xl">
+                  <h3 className="handwriting text-white text-5xl md:text-6xl">
                     {caseStudies[currentIndex].title}
                   </h3>
                 </motion.div>
@@ -112,28 +116,28 @@ export function CaseStudies() {
 
               {/* Right Arrow */}
               <motion.button
+                type="button"
                 onClick={handleNext}
-                className="flex-shrink-0 w-14 h-14 rounded-full bg-white shadow-lg flex items-center justify-center text-red-600 hover:bg-red-600 hover:text-white transition-all z-10"
+                className="shrink-0 w-16 h-16 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-red-600 hover:border-red-600 transition-all z-10"
                 whileHover={{ scale: 1.1, x: 5 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <ChevronRight className="w-7 h-7" />
+                <ChevronRight className="w-8 h-8" />
               </motion.button>
             </div>
 
             {/* Indicators */}
-            <div className="flex justify-center gap-2 mt-8">
-              {caseStudies.map((_, index) => (
+            <div className="flex justify-center gap-3 mt-12">
+              {caseStudies.map((study, index) => (
                 <button
-                  key={index}
+                  type="button"
+                  key={study.id}
                   onClick={() => {
                     setDirection(index > currentIndex ? 1 : -1)
                     setCurrentIndex(index)
                   }}
-                  className={`h-2 rounded-full transition-all ${
-                    index === currentIndex
-                      ? "w-8 bg-gradient-to-r from-red-500 via-red-700 to-black"
-                      : "w-2 bg-gray-300 hover:bg-gray-400"
+                  className={`h-1.5 rounded-full transition-all duration-500 ${
+                    index === currentIndex ? "w-12 bg-red-600" : "w-3 bg-white/20 hover:bg-white/40"
                   }`}
                 />
               ))}
