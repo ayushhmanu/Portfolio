@@ -19,20 +19,7 @@ export function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null)
   const maskRef = useRef<HTMLDivElement>(null)
   const targetRef = useRef<HTMLSpanElement>(null)
-  const notJustARef = useRef<HTMLParagraphElement>(null)
   const [currentFont, setCurrentFont] = useState("var(--font-display)")
-
-  // Parallax Effect
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!notJustARef.current) return
-      const x = (e.clientX - window.innerWidth / 2) * 0.02
-      const y = (e.clientY - window.innerHeight / 2) * 0.02
-      gsap.to(notJustARef.current, { x, y, duration: 0.5, ease: "power1.out" })
-    }
-    window.addEventListener("mousemove", handleMouseMove)
-    return () => window.removeEventListener("mousemove", handleMouseMove)
-  }, [])
 
   // Font Roulette Effect
   useEffect(() => {
@@ -214,10 +201,7 @@ export function HeroSection() {
         >
           <div className="hero-content-wrapper relative flex flex-col items-center">
             <div className="relative">
-              <p
-                ref={notJustARef}
-                className="hero-element-subtitle absolute -top-8 -left-4 md:-left-12 text-sm md:text-base font-display italic font-medium text-white/90 tracking-[0.2em] whitespace-nowrap"
-              >
+              <p className="hero-element-subtitle absolute -top-8 -left-4 md:-left-12 text-sm md:text-base font-display italic font-medium text-white/90 tracking-[0.2em] whitespace-nowrap">
                 ( NOT JUST A )
               </p>
               <h1 className="hero-element-title-1 font-display text-[15vw] leading-[0.8] font-bold text-white tracking-tighter text-center whitespace-nowrap select-none">

@@ -6,6 +6,11 @@ const BRAND_NAME = "AYUSH MANU"
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
+  const phoneNumber = "917067415578";
+  const message = encodeURIComponent(
+    "Hi Ayush, interested in a video project. Can we have a quick call?"
+  );
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,21 +41,39 @@ export function Header() {
         </motion.div>
 
         <nav className="hidden md:flex items-center gap-8">
-          {["Work", "About", "Contact"].map((item) => (
-            <button
-              key={item}
-              type="button"
-              className="text-sm uppercase tracking-widest text-white/70 hover:text-red-500 transition-colors"
-            >
-              {item}
-            </button>
-          ))}
+          <button
+            type="button"
+            onClick={() => {
+              document.getElementById("work")?.scrollIntoView({ behavior: "smooth" })
+            }}
+            className="text-sm uppercase tracking-widest text-white/70 hover:text-red-500 transition-colors cursor-pointer"
+          >
+            Work
+          </button>
+          <button
+            type="button"
+            className="text-sm uppercase tracking-widest text-white/70 hover:text-red-500 transition-colors cursor-pointer"
+          >
+            About
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
+            }}
+            className="text-sm uppercase tracking-widest text-white/70 hover:text-red-500 transition-colors cursor-pointer"
+          >
+            Contact
+          </button>
         </nav>
 
         <Magnetic>
           <button
             type="button"
-            className="hidden md:block px-6 py-2 border border-white/20 rounded-full text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300"
+            onClick={() => {
+              window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+            }}
+            className="hidden md:block px-6 py-2 border border-white/20 rounded-full text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 cursor-pointer"
           >
             Let's Talk
           </button>

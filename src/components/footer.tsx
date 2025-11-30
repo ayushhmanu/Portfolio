@@ -30,6 +30,7 @@ export function Footer() {
 
   return (
     <footer
+      id="contact"
       ref={footerRef}
       className="bg-black text-white py-20 border-t border-white/10 overflow-hidden"
     >
@@ -42,21 +43,27 @@ export function Footer() {
               <span className="text-red-600">TOGETHER</span>
             </h2>
             <a
-              href="mailto:hello@ayushmanu.studio"
+              href="mailto:ayushhmanu.works@gmail.com"
               className="text-xl md:text-2xl text-white/60 hover:text-white transition-colors border-b border-white/20 pb-1"
             >
-              hello@ayushmanu.studio
+              ayushhmanu.works@gmail.com
             </a>
           </div>
 
           <div className="flex flex-col gap-4 text-right">
-            {["Instagram", "Twitter", "YouTube", "LinkedIn"].map((social) => (
+            {[
+              { name: "Instagram", url: "https://www.instagram.com/ayushhmanu/" },
+              { name: "YouTube", url: "https://www.youtube.com/@ayushhmanu" },
+              { name: "LinkedIn", url: "https://www.linkedin.com/in/ayushhmanu/" },
+            ].map((social) => (
               <a
-                key={social}
-                href={`https://${social.toLowerCase()}.com`}
+                key={social.name}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-sm uppercase tracking-widest text-white/40 hover:text-red-500 transition-colors"
               >
-                {social}
+                {social.name}
               </a>
             ))}
           </div>

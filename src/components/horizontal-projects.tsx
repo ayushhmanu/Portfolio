@@ -67,7 +67,11 @@ export function HorizontalProjects() {
   }, [])
 
   return (
-    <section ref={componentRef} className="relative bg-black overflow-hidden min-h-screen">
+    <section
+      id="work"
+      ref={componentRef}
+      className="relative bg-black overflow-hidden min-h-screen"
+    >
       <div
         ref={sliderRef}
         className="flex h-screen items-center w-fit px-20 gap-20 will-change-transform"
