@@ -204,11 +204,11 @@ export function HeroSection() {
               <p className="hero-element-subtitle absolute -top-8 -left-4 md:-left-12 text-sm md:text-base font-display italic font-medium text-white/90 tracking-[0.2em] whitespace-nowrap">
                 ( NOT JUST A )
               </p>
-              <h1 className="hero-element-title-1 font-display text-[15vw] leading-[0.8] font-bold text-white tracking-tighter text-center whitespace-nowrap select-none">
+              <h1 className="hero-element-title-1 font-display text-[18vw] md:text-[15vw] leading-[0.8] font-bold text-white tracking-tighter text-center whitespace-nowrap select-none">
                 VID<span ref={targetRef}>E</span>O
               </h1>
             </div>
-            <h1 className="hero-element-title-2 font-display text-[15vw] leading-[0.8] font-bold text-black tracking-tighter text-center whitespace-nowrap select-none -mt-2 md:-mt-6">
+            <h1 className="hero-element-title-2 font-display text-[18vw] md:text-[15vw] leading-[0.8] font-bold text-black tracking-tighter text-center whitespace-nowrap select-none -mt-2 md:-mt-6">
               <span
                 className="text-transparent hover:text-red-600 transition-colors duration-500 cursor-default"
                 style={{ WebkitTextStroke: "2px white" }}
@@ -230,14 +230,14 @@ export function HeroSection() {
                 ( NOT JUST A )
               </p>
               <h1
-                className="hero-element-title-1 text-[15vw] leading-[0.8] font-bold text-white tracking-tighter text-center whitespace-nowrap select-none transition-all duration-300"
+                className="hero-element-title-1 text-[18vw] md:text-[15vw] leading-[0.8] font-bold text-white tracking-tighter text-center whitespace-nowrap select-none transition-all duration-300"
                 style={{ fontFamily: currentFont }}
               >
                 VIDEO
               </h1>
             </div>
             <h1
-              className="hero-element-title-2 text-[15vw] leading-[0.8] font-bold text-black tracking-tighter text-center whitespace-nowrap select-none -mt-2 md:-mt-6 transition-all duration-300"
+              className="hero-element-title-2 text-[18vw] md:text-[15vw] leading-[0.8] font-bold text-black tracking-tighter text-center whitespace-nowrap select-none -mt-2 md:-mt-6 transition-all duration-300"
               style={{ fontFamily: currentFont, WebkitTextStroke: "2px white" }}
             >
               EDITOR
@@ -254,14 +254,14 @@ export function HeroSection() {
         </div>
 
         {/* Floating Elements */}
-        <div className="hero-fade-elements opacity-0 absolute bottom-7 left-10 hidden md:block z-30">
-          <p className="font-display text-xs text-white/40 -rotate-90 origin-bottom-left tracking-widest mix-blend-difference">
+        <div className="hero-fade-elements opacity-0 absolute bottom-7 left-4 md:left-10 z-30">
+          <p className="font-display text-[10px] md:text-xs text-white/40 -rotate-90 origin-bottom-left tracking-widest mix-blend-difference">
             EST. 2024
           </p>
         </div>
 
-        <div className="hero-fade-elements opacity-0 absolute bottom-7 right-10 hidden md:block z-30">
-          <p className="font-display text-xs text-white/40 tracking-widest mix-blend-difference">
+        <div className="hero-fade-elements opacity-0 absolute bottom-7 right-4 md:right-10 hidden md:block z-30">
+          <p className="font-display text-[10px] md:text-xs text-white/40 tracking-widest mix-blend-difference">
             SCROLL TO EXPLORE
           </p>
         </div>

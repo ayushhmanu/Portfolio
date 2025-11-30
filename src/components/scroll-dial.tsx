@@ -1,10 +1,10 @@
-import { useState, useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 
 gsap.registerPlugin(ScrollTrigger)
 
-export function ScrollDial() {
+function DesktopDial() {
   const dialRef = useRef<HTMLDivElement>(null)
   const [percentage, setPercentage] = useState(0)
 
@@ -87,7 +87,8 @@ export function ScrollDial() {
                 const isCardinal = i % 15 === 0
                 return (
                   <line
-                    key={`tick-angle-${angle}`}
+                    // biome-ignore lint/suspicious/noArrayIndexKey: Static visual elements
+                    key={i}
                     x1="50"
                     y1="4"
                     x2="50"
@@ -102,7 +103,7 @@ export function ScrollDial() {
             </svg>
 
             {/* Inner Ring */}
-            <div className="absolute inset-6 rounded-full border border-white/5"></div>
+            <div className="absolute inset-6 rounded-full border border-white/5" />
           </div>
         </div>
 
@@ -118,5 +119,95 @@ export function ScrollDial() {
         </div>
       </div>
     </div>
+  )
+}
+
+function MobileDial() {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [activeIndex, setActiveIndex] = useState(0)
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const isScrollingRef = useRef(false)
+
+  const TOTAL_PILLS = 30
+
+  useEffect(() => {
+    // Handle Scroll Visibility
+    const handleScroll = () => {
+      if (!containerRef.current) return
+
+      // Show dial (Pop out)
+      if (!isScrollingRef.current) {
+        isScrollingRef.current = true
+        gsap.to(containerRef.current, {
+          x: 0, // Fully visible
+          duration: 0.4,
+          ease: "power3.out",
+        })
+      }
+
+      // Clear existing timeout
+      if (timeoutRef.current) clearTimeout(timeoutRef.current)
+
+      // Set timeout to hide (Go back)
+      timeoutRef.current = setTimeout(() => {
+        isScrollingRef.current = false
+        gsap.to(containerRef.current, {
+          x: "35%", // Slide back to be partially visible (sticking out)
+          duration: 0.5,
+          ease: "power3.inOut",
+        })
+      }, 800)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+
+    // Handle Progress
+    const trigger = ScrollTrigger.create({
+      trigger: "body",
+      start: "top top",
+      end: "bottom bottom",
+      onUpdate: (self) => {
+        const progress = self.progress
+        const index = Math.floor(progress * TOTAL_PILLS)
+        setActiveIndex(Math.min(index, TOTAL_PILLS - 1))
+      },
+    })
+
+    // Initial state: Sticking out
+    gsap.set(containerRef.current, { x: "35%" })
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+      if (timeoutRef.current) clearTimeout(timeoutRef.current)
+      trigger.kill()
+    }
+  }, [])
+
+  return (
+    <div
+      ref={containerRef}
+      className="fixed right-0 top-1/2 -translate-y-1/2 z-50 flex flex-col items-end gap-2 p-2 md:hidden"
+    >
+      {Array.from({ length: TOTAL_PILLS }).map((_, i) => (
+        <div
+          // biome-ignore lint/suspicious/noArrayIndexKey: Static visual elements
+          key={i}
+          className={`rounded-l-full transition-all duration-200 ${
+            i === activeIndex
+              ? "w-10 h-1 bg-red-600 shadow-[0_0_10px_rgba(220,38,38,0.8)]"
+              : "w-4 h-0.5 bg-white/30"
+          }`}
+        />
+      ))}
+    </div>
+  )
+}
+
+export function ScrollDial() {
+  return (
+    <>
+      <DesktopDial />
+      <MobileDial />
+    </>
   )
 }
