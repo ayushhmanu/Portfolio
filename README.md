@@ -2,6 +2,7 @@
 # Ayush Manu – Portfolio Site
 
 This repo contains the Vite + React codebase powering Ayush Manu's video portfolio. It includes polished motion-heavy sections (hero reel, client reels, testimonials, and contact) tailored to showcase bespoke editing work built completely in-house.
+This repo is a collection of my work.
 
 ## Development
 
