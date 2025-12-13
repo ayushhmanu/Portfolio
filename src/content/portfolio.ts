@@ -1,20 +1,20 @@
 export const heroContent = {
     videoUrl: "https://res.cloudinary.com/dxyfsw8a0/video/upload/v1765446351/Hero2_lscwxd.mp4",
-    subtitle: "( NOT JUST A )",
+    subtitle: " NOT JUST A ",
     title1: "VIDEO",
     title2: "EDITOR",
     description:
-        "Crafting cinematic experiences through precise editing and motion design.",
-    estDate: "EST. 2024",
+        "The Pen. The Lens. The Voice. The Cut.",
+    estDate: "EST. 2026",
     scrollText: "SCROLL TO EXPLORE",
 };
 
 export const longFormProjects = [
     {
         id: 1,
-        title: "THE ART OF EDITING",
-        category: "DOCUMENTARY",
-        duration: "12:45",
+        title: "Instagram Trend",
+        category: "Trending",
+        duration: "2:00",
         image:
             "https://images.unsplash.com/photo-1579165466741-7f35e4755652?w=800&h=600&fit=crop",
         description:
@@ -100,14 +100,14 @@ export const companyLogos = [
     { name: "TCC", bg: "white" },
     { name: "TXD" },
     { name: "Ayush", bg: "white" },
-    { name: "TCC" },
+    { name: "NSS VITB" },
     { name: "Nexus" },
     { name: "TXD", bg: "white" },
     { name: "TCC" },
     { name: "Ayush" },
     { name: "TXD" },
     { name: "Nexus", bg: "white" },
-    { name: "Ayush" },
+    { name: "Akash Majumder" },
     { name: "TXD" },
     { name: "TCC", bg: "white" },
     { name: "Nexus" },
