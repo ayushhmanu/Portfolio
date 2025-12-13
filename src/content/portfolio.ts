@@ -123,7 +123,7 @@ export const footerContent = {
         { name: "LinkedIn", url: "https://www.linkedin.com/in/ayushhmanu/" },
     ],
     copyright: {
-        text: "© 2025 AYUSHHMANU",
+        text: "© 2026 AYUSHHMANU",
         subtext: "ALL RIGHTS RESERVED",
     },
 };
