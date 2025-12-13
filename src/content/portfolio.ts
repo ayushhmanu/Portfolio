@@ -48,23 +48,23 @@ export const longFormProjects = [
 export const shortFormProjects = [
     {
         id: 1,
-        title: "Foodfarmer",
-        category: "AD",
-        views: "1.2M",
+        title: "",
+        category: "Cinematic Storytelling",
+        views: "6143",
         videoUrl: "https://youtube.com/shorts/GszFGlgEbDs",
     },
     {
         id: 2,
-        title: "TRAVEL REEL",
-        category: "LIFESTYLE",
+        title: "",
+        category: "Storytelling",
         views: "850K",
         videoUrl: "https://youtube.com/shorts/Rdmb6dGy6xU",
     },
     {
         id: 3,
-        title: "FITNESS MOTIVATION",
-        category: "SPORTS",
-        views: "2.5M",
+        title: "",
+        category: "Documenting",
+        views: "4586",
         videoUrl: "https://youtube.com/shorts/VAIcC3Lpbp8",
     },
 ];
