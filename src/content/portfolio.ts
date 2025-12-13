@@ -12,35 +12,35 @@ export const heroContent = {
 export const longFormProjects = [
     {
         id: 1,
-        title: "Instagram Trend",
-        category: "Trending",
+        title: "Viral Engine",
+        category: "Trends",
         duration: "2:00",
         image:
             "https://images.unsplash.com/photo-1579165466741-7f35e4755652?w=800&h=600&fit=crop",
         description:
-            "A deep dive into the psychology of film editing and how it shapes the narrative structure.",
+            "Versatility is my specialty. Whether you need fast-paced retention or cinematic storytelling, I adapt to your brand.",
         videoUrl: "https://youtu.be/OW4OWiY-Myc",
     },
     {
         id: 2,
-        title: "URBAN EXPLORATION",
-        category: "VLOG SERIES",
-        duration: "08:20",
+        title: "Future-Forward",
+        category: "AI Integrated",
+        duration: "1:08",
         image:
             "https://images.unsplash.com/photo-1518066000714-58c45f1a2c0a?w=800&h=600&fit=crop",
         description:
-            "Exploring the abandoned spaces of the city, uncovering stories lost to time.",
+            "I don't let AI replace creativity; I use it to amplify it.",
         videoUrl: "https://youtu.be/CPTlR92OnbE",
     },
     {
         id: 3,
-        title: "CULINARY JOURNEY",
-        category: "LIFESTYLE",
-        duration: "15:30",
+        title: "Talking Head",
+        category: "Informative",
+        duration: "1:30",
         image:
             "https://images.unsplash.com/photo-1556910103-1c02745a30bf?w=800&h=600&fit=crop",
         description:
-            "Following a master chef through the chaotic yet beautiful process of creating a signature dish.",
+            "Talking heads can be boring. I make them impossible to skip.",
         videoUrl: "https://youtu.be/RLt5YrzSVPo",
     },
 ];
@@ -48,23 +48,23 @@ export const longFormProjects = [
 export const shortFormProjects = [
     {
         id: 1,
-        title: "Foodfarmer",
-        category: "AD",
-        views: "1.2M",
+        title: "",
+        category: "Cinematic Storytelling",
+        views: "6143",
         videoUrl: "https://youtube.com/shorts/GszFGlgEbDs",
     },
     {
         id: 2,
-        title: "TRAVEL REEL",
-        category: "LIFESTYLE",
+        title: "",
+        category: "Storytelling",
         views: "850K",
         videoUrl: "https://youtube.com/shorts/Rdmb6dGy6xU",
     },
     {
         id: 3,
-        title: "FITNESS MOTIVATION",
-        category: "SPORTS",
-        views: "2.5M",
+        title: "",
+        category: "Documenting",
+        views: "4586",
         videoUrl: "https://youtube.com/shorts/VAIcC3Lpbp8",
     },
 ];
@@ -123,7 +123,7 @@ export const footerContent = {
         { name: "LinkedIn", url: "https://www.linkedin.com/in/ayushhmanu/" },
     ],
     copyright: {
-        text: "© 2025 AYUSHHMANU",
+        text: "© 2026 AYUSHHMANU",
         subtext: "ALL RIGHTS RESERVED",
     },
 };
