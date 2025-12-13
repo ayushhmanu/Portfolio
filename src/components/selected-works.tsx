@@ -2,18 +2,18 @@ import { useRef } from "react"
 
 // Video data for marquees
 const horizontalVideos = [
-    { id: 1, src: "/videos/horizontal/HC1.mp4", title: "HC1" },
-    { id: 2, src: "/videos/horizontal/Speed Ramp Watch.mp4", title: "Speed Ramp" },
-    { id: 3, src: "/videos/horizontal/{Traders,Investers,Learners]Final.mp4", title: "Traders" },
+    { id: 1, src: "/videos/horizontal/HC1.mp4", title: "" },
+    { id: 2, src: "/videos/horizontal/Speed Ramp Watch.mp4", title: "" },
+    { id: 3, src: "/videos/horizontal/{Traders,Investers,Learners]Final.mp4", title: "" },
 ]
 
 const verticalVideos = [
-    { id: 1, src: "/videos/vertical/Camera match cut .mp4", title: "Camera Match" },
-    { id: 2, src: "/videos/vertical/IOS Ui Animation.mp4", title: "iOS UI" },
-    { id: 3, src: "/videos/vertical/Post ( Shape Morphing ).mp4", title: "Shape Morph" },
-    { id: 4, src: "/videos/vertical/T animation.mp4", title: "T Animation" },
-    { id: 5, src: "/videos/vertical/Wins Fails Mess.mp4", title: "Wins Fails" },
-    { id: 6, src: "/videos/vertical/actions cures anxiety.mp4", title: "Actions" },
+    { id: 1, src: "/videos/vertical/Camera match cut .mp4", title: "" },
+    { id: 2, src: "/videos/vertical/IOS Ui Animation.mp4", title: "" },
+    { id: 3, src: "/videos/vertical/Post ( Shape Morphing ).mp4", title: "" },
+    { id: 4, src: "/videos/vertical/T animation.mp4", title: "" },
+    { id: 5, src: "/videos/vertical/Wins Fails Mess.mp4", title: "" },
+    { id: 6, src: "/videos/vertical/actions cures anxiety.mp4", title: "" },
 ]
 
 export function SelectedWorks() {
