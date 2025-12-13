@@ -48,7 +48,7 @@ export const longFormProjects = [
 export const shortFormProjects = [
     {
         id: 1,
-        title: "NIKE COMMERCIAL",
+        title: "Foodfarmer",
         category: "AD",
         views: "1.2M",
         videoUrl: "https://youtube.com/shorts/GszFGlgEbDs",
