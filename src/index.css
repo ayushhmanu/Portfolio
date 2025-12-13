@@ -46,8 +46,10 @@
   /* Hide scrollbar for IE, Edge and Firefox */
   html,
   body {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
   }
 
   h1,
@@ -133,6 +135,7 @@
     from {
       transform: rotate(0deg);
     }
+
     to {
       transform: rotate(360deg);
     }
@@ -142,6 +145,7 @@
     from {
       transform: rotate(0deg);
     }
+
     to {
       transform: rotate(-360deg);
     }
@@ -151,8 +155,9 @@
     from {
       transform: translateX(0);
     }
+
     to {
-      transform: translateX(-100%);
+      transform: translateX(-50%);
     }
   }
 
@@ -160,6 +165,7 @@
     from {
       transform: translateX(-100%);
     }
+
     to {
       transform: translateX(0);
     }
@@ -171,5 +177,19 @@
 
   .animate-marquee-reverse {
     animation: marquee-reverse 30s linear infinite;
+  }
+
+  @keyframes marquee-vertical {
+    from {
+      transform: translateY(0);
+    }
+
+    to {
+      transform: translateY(-50%);
+    }
+  }
+
+  .animate-marquee-vertical {
+    animation: marquee-vertical 25s linear infinite;
   }
 }

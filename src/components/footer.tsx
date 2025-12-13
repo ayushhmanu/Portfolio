@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { footerContent } from "../content/portfolio"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -38,24 +39,20 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center md:items-end gap-10 md:gap-12 text-center md:text-left">
           <div className="flex flex-col items-center md:items-start">
             <h2 className="font-display text-6xl md:text-8xl font-bold tracking-tighter mb-6 leading-[0.9]">
-              LET'S CREATE
+              {footerContent.title1}
               <br />
-              <span className="text-red-600">TOGETHER</span>
+              <span className="text-red-600">{footerContent.title2}</span>
             </h2>
             <a
-              href="mailto:ayushhmanu.works@gmail.com"
+              href={`mailto:${footerContent.email}`}
               className="text-lg md:text-2xl text-white/60 hover:text-white transition-colors border-b border-white/20 pb-1 hover:border-red-500"
             >
-              ayushhmanu.works@gmail.com
+              {footerContent.email}
             </a>
           </div>
 
           <div className="flex flex-row md:flex-col gap-4 md:gap-4 items-center md:items-end flex-wrap justify-center">
-            {[
-              { name: "Instagram", url: "https://www.instagram.com/ayushhmanu/" },
-              { name: "YouTube", url: "https://www.youtube.com/@ayushhmanu" },
-              { name: "LinkedIn", url: "https://www.linkedin.com/in/ayushhmanu/" },
-            ].map((social) => (
+            {footerContent.socialLinks.map((social) => (
               <a
                 key={social.name}
                 href={social.url}
@@ -70,8 +67,8 @@ export function Footer() {
         </div>
 
         <div className="mt-16 md:mt-20 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] md:text-xs text-white/20 uppercase tracking-[0.2em]">
-          <p>© 2025 AYUSH MANU</p>
-          <p>ALL RIGHTS RESERVED</p>
+          <p>{footerContent.copyright.text}</p>
+          <p>{footerContent.copyright.subtext}</p>
         </div>
       </div>
     </footer>

@@ -63,9 +63,8 @@ export function Header() {
   return (
     <>
       <motion.header
-        className={`fixed top-0 left-0 right-0 z-100 transition-all duration-300 mix-blend-difference ${
-          isScrolled ? "py-4" : "py-6"
-        }`}
+        className={`fixed top-0 left-0 right-0 z-100 transition-all duration-300 mix-blend-difference ${isScrolled ? "py-4" : "py-6"
+          }`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
@@ -90,12 +89,6 @@ export function Header() {
               className="text-sm uppercase tracking-widest text-white/70 hover:text-red-500 transition-colors cursor-pointer"
             >
               Work
-            </button>
-            <button
-              type="button"
-              className="text-sm uppercase tracking-widest text-white/70 hover:text-red-500 transition-colors cursor-pointer"
-            >
-              About
             </button>
             <button
               type="button"
@@ -127,19 +120,16 @@ export function Header() {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             <span
-              className={`h-0.5 bg-white transition-all duration-300 ease-out ${
-                isMenuOpen ? "w-8 rotate-45 translate-y-2" : "w-8"
-              }`}
+              className={`h-0.5 bg-white transition-all duration-300 ease-out ${isMenuOpen ? "w-8 rotate-45 translate-y-2" : "w-8"
+                }`}
             />
             <span
-              className={`h-0.5 bg-white transition-all duration-300 ease-out ${
-                isMenuOpen ? "opacity-0 translate-x-4" : "w-6 group-hover:w-8"
-              }`}
+              className={`h-0.5 bg-white transition-all duration-300 ease-out ${isMenuOpen ? "opacity-0 translate-x-4" : "w-6 group-hover:w-8"
+                }`}
             />
             <span
-              className={`h-0.5 bg-white transition-all duration-300 ease-out ${
-                isMenuOpen ? "w-8 -rotate-45 -translate-y-2" : "w-4 group-hover:w-8"
-              }`}
+              className={`h-0.5 bg-white transition-all duration-300 ease-out ${isMenuOpen ? "w-8 -rotate-45 -translate-y-2" : "w-4 group-hover:w-8"
+                }`}
             />
           </button>
         </div>
@@ -153,7 +143,7 @@ export function Header() {
       >
         <div className="flex flex-col gap-8">
           <nav className="flex flex-col gap-6">
-            {["Work", "About", "Contact"].map((item) => (
+            {["Work", "Contact"].map((item) => (
               <div key={item} className="overflow-hidden">
                 <button
                   type="button"

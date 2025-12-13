@@ -7,6 +7,8 @@ import { Header } from "./components/header"
 import { SmoothScroll } from "./components/smooth-scroll"
 import { ScrollDial } from "./components/scroll-dial"
 
+import { SelectedWorks } from "./components/selected-works"
+
 export default function App() {
   return (
     <SmoothScroll>
@@ -15,7 +17,8 @@ export default function App() {
         <ScrollDial />
         <main>
           <HeroSection />
-          <HorizontalProjects />
+          {/* <HorizontalProjects /> */}
+          <SelectedWorks />
           <LongVideoProjects />
           <ClientsSection />
         </main>

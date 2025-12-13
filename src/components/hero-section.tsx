@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import ReactPlayer from "react-player"
+import { heroContent } from "../content/portfolio"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -158,6 +160,33 @@ export function HeroSection() {
           },
           0
         )
+
+        // === SCROLL EFFECTS FOR VIDEO (after full reveal) ===
+        // These effects start at 85% of scroll (when video is fully revealed)
+        // and complete by 100% of scroll
+
+        // EFFECT A: Fade out the video as user scrolls
+        tl.to(
+          ".hero-video-element",
+          {
+            opacity: 0.3,
+            duration: 0.15, // Last 15% of scroll
+            ease: "power2.out",
+          },
+          0.85 // Start at 85% of timeline
+        )
+
+        // EFFECT B: Blur the video as user scrolls
+        // Comment out if you prefer just fade, or use both together
+        tl.to(
+          ".hero-video-element",
+          {
+            filter: "blur(10px)",
+            duration: 0.15,
+            ease: "power2.out",
+          },
+          0.85
+        )
       }, containerRef)
     }
 
@@ -183,12 +212,12 @@ export function HeroSection() {
         {/* Layer 0: Fixed Video Background */}
         <div className="absolute inset-0 z-0">
           <video
-            className="w-full h-full object-cover opacity-80 mix-blend-overlay"
+            className="hero-video-element w-full h-full object-cover opacity-80 mix-blend-overlay"
             autoPlay
             muted
             loop
             playsInline
-            src="/bg-video.mp4"
+            src={heroContent.videoUrl}
           />
           <div className="hero-video-overlay absolute inset-0 bg-white/50 pointer-events-none" />
         </div>
@@ -202,10 +231,10 @@ export function HeroSection() {
           <div className="hero-content-wrapper relative flex flex-col items-center">
             <div className="relative">
               <p className="hero-element-subtitle absolute -top-8 -left-4 md:-left-12 text-sm md:text-base font-display italic font-medium text-white/90 tracking-[0.2em] whitespace-nowrap">
-                ( NOT JUST A )
+                {heroContent.subtitle}
               </p>
               <h1 className="hero-element-title-1 font-display text-[18vw] md:text-[15vw] leading-[0.8] font-bold text-white tracking-tighter text-center whitespace-nowrap select-none">
-                VID<span ref={targetRef}>E</span>O
+                {heroContent.title1.slice(0, 3)}<span ref={targetRef}>{heroContent.title1.slice(3, 4)}</span>{heroContent.title1.slice(4)}
               </h1>
             </div>
             <h1 className="hero-element-title-2 font-display text-[18vw] md:text-[15vw] leading-[0.8] font-bold text-black tracking-tighter text-center whitespace-nowrap select-none -mt-2 md:-mt-6">
@@ -213,7 +242,7 @@ export function HeroSection() {
                 className="text-transparent hover:text-red-600 transition-colors duration-500 cursor-default"
                 style={{ WebkitTextStroke: "2px white" }}
               >
-                EDITOR
+                {heroContent.title2}
               </span>
             </h1>
           </div>
@@ -227,20 +256,20 @@ export function HeroSection() {
                 className="hero-element-subtitle absolute -top-8 -left-4 md:-left-12 text-sm md:text-base font-display italic font-medium text-white/90 tracking-[0.2em] whitespace-nowrap transition-all duration-300"
                 style={{ fontFamily: currentFont }}
               >
-                ( NOT JUST A )
+                {heroContent.subtitle}
               </p>
               <h1
                 className="hero-element-title-1 text-[18vw] md:text-[15vw] leading-[0.8] font-bold text-white tracking-tighter text-center whitespace-nowrap select-none transition-all duration-300"
                 style={{ fontFamily: currentFont }}
               >
-                VIDEO
+                {heroContent.title1}
               </h1>
             </div>
             <h1
               className="hero-element-title-2 text-[18vw] md:text-[15vw] leading-[0.8] font-bold text-black tracking-tighter text-center whitespace-nowrap select-none -mt-2 md:-mt-6 transition-all duration-300"
               style={{ fontFamily: currentFont, WebkitTextStroke: "2px white" }}
             >
-              EDITOR
+              {heroContent.title2}
             </h1>
           </div>
         </div>
@@ -248,7 +277,7 @@ export function HeroSection() {
         {/* Subtitle and Line - Fade out on scroll */}
         <div className="hero-fade-elements opacity-0 absolute bottom-8 left-0 right-0 z-30 flex flex-col items-center gap-4 pointer-events-none">
           <p className="text-white/60 text-sm md:text-base max-w-lg font-light tracking-wide text-center mix-blend-difference px-4">
-            Crafting cinematic experiences through precise editing and motion design.
+            {heroContent.description}
           </p>
           <div className="h-12 w-px bg-linear-to-b from-red-600 to-transparent"></div>
         </div>
@@ -256,13 +285,13 @@ export function HeroSection() {
         {/* Floating Elements */}
         <div className="hero-fade-elements opacity-0 absolute bottom-7 left-7 md:left-10 z-30">
           <p className="font-display text-[12px] md:text-base text-white/40 -rotate-90 origin-bottom-left tracking-widest mix-blend-difference">
-            EST. 2024
+            {heroContent.estDate}
           </p>
         </div>
 
         <div className="hero-fade-elements opacity-0 absolute bottom-7 right-4 md:right-10 hidden md:block z-30">
           <p className="font-display text-[10px] md:text-xs text-white/40 tracking-widest mix-blend-difference">
-            SCROLL TO EXPLORE
+            {heroContent.scrollText}
           </p>
         </div>
       </div>
