@@ -75,9 +75,9 @@ export const talentProfiles = [
     { name: "Nexus", title: "Production", image: "/logos/Nexus Logo.png" },
     { name: "TCC", title: "Creative", image: "/logos/TCC Logo.png" },
     { name: "TXD", title: "Design", image: "/logos/TXD Logo.png" },
-    { name: "Ayush", title: "Video Editor", image: "/logos/Ayush Logo.png" },
-    { name: "TCC", title: "Creative", image: "/logos/TCC Logo.png" },
-    { name: "Nexus", title: "Production", image: "/logos/Nexus Logo.png" },
+    { name: "Iqlipse Nova", title: "Video Editor", image: "/logos/Ayush Logo.png" },
+    { name: "Food Pharmer", title: "Creative", image: "/logos/TCC Logo.png" },
+    { name: "Hustle with Harman", title: "Production", image: "/logos/Nexus Logo.png" },
     { name: "TXD", title: "Design", image: "/logos/TXD Logo.png" },
     { name: "TCC", title: "Creative", image: "/logos/TCC Logo.png" },
     // Duplicates for infinite scroll effect
