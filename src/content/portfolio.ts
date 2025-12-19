@@ -95,14 +95,14 @@ export const talentProfiles = [
 export const companyLogos = [
     // Pattern: Ayush, Nexus, TCC, TXD repeated (no same adjacent)
     // Some have bg: "white" for visual variety
-    { name: "Ayush" },
-    { name: "Nexus" },
-    { name: "TCC", bg: "white" },
+    { name: "Hustle with Harman" },
+    { name: "Nexus Games India" },
+    { name: "The Creative Cult", bg: "white" },
     { name: "TXD" },
-    { name: "Ayush", bg: "white" },
+    { name: "Food Pharmer", bg: "white" },
     { name: "NSS VITB" },
     { name: "Nexus" },
-    { name: "TXD", bg: "white" },
+    { name: "Iqlipse Nova", bg: "white" },
     { name: "TCC" },
     { name: "Ayush" },
     { name: "TXD" },
