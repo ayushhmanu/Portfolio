@@ -6,6 +6,7 @@ const horizontalVideos = [
     { id: 2, src: "/videos/horizontal/Speed Ramp Watch.mp4", title: "" },
     { id: 3, src: "/videos/horizontal/{Traders,Investers,Learners]Final.mp4", title: "" },
     { id: 4, src: "/videos/horizontal/Books.mp4", title: "" }, 
+    { id: 5, src: "/videos/horizontal/nova 11.14.mp4", title: "" },
 ]
 
 const verticalVideos = [
