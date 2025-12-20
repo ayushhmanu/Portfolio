@@ -19,7 +19,7 @@ export const longFormProjects = [
             "https://images.unsplash.com/photo-1579165466741-7f35e4755652?w=800&h=600&fit=crop",
         description:
             "Versatility is my specialty. Whether you need fast-paced retention or cinematic storytelling, I adapt to your brand.",
-        videoUrl: "https://youtu.be/OW4OWiY-Myc",
+        videoUrl: "https://youtu.be/67cJJuzMxuM",
     },
     {
         id: 2,
