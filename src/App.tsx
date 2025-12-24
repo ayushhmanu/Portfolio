@@ -6,6 +6,7 @@ import { Footer } from "./components/footer"
 import { Header } from "./components/header"
 import { SmoothScroll } from "./components/smooth-scroll"
 import { ScrollDial } from "./components/scroll-dial"
+import { Analytics } from "@vercel/analytics/react"
 
 import { SelectedWorks } from "./components/selected-works"
 
@@ -23,6 +24,7 @@ export default function App() {
           <ClientsSection />
         </main>
         <Footer />
+        <Analytics />
       </div>
     </SmoothScroll>
   )
