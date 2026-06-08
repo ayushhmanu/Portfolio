@@ -43,6 +43,24 @@ export const longFormProjects = [
             "Talking heads can be boring. I make them impossible to skip.",
         videoUrl: "https://youtu.be/RLt5YrzSVPo",
     },
+    {
+        id: 4,
+        title: "The Comeback",
+        category: "Cinematic",
+        duration: "3:45",
+        image: "https://images.unsplash.com/photo-1536240478700-b869ad10025f?w=800&h=600&fit=crop",
+        description: "Every great story has a turning point. This is that moment.",
+        videoUrl: "https://youtu.be/REPLACE_WITH_YOUR_LINK",
+    },
+    {
+        id: 5,
+        title: "Raw & Real",
+        category: "Documentary",
+        duration: "5:20",
+        image: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800&h=600&fit=crop",
+        description: "Unfiltered. Unscripted. Just pure storytelling.",
+        videoUrl: "https://youtu.be/REPLACE_WITH_YOUR_LINK",
+    },
 ];
 
 export const shortFormProjects = [
@@ -66,6 +84,22 @@ export const shortFormProjects = [
         category: "Documenting",
         views: "4586",
         videoUrl: "https://youtube.com/shorts/VAIcC3Lpbp8",
+    },
+    {
+        id: 4,
+        title: "Midnight Run",
+        category: "Cinematic Storytelling",
+        views: "120K",
+        image: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=400&h=700&fit=crop",
+        videoUrl: "https://youtu.be/REPLACE_WITH_YOUR_LINK",
+    },
+    {
+        id: 5,
+        title: "One Shot",
+        category: "Documenting",
+        views: "87K",
+        image: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=400&h=700&fit=crop",
+        videoUrl: "https://youtu.be/REPLACE_WITH_YOUR_LINK",
     },
 ];
 
