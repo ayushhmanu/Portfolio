@@ -1,5 +1,5 @@
 export const heroContent = {
-    videoUrl: "https://res.cloudinary.com/dxyfsw8a0/video/upload/v1766174225/bg-video_dpodhb.mp4",
+    videoUrl: "https://res.cloudinary.com/dxyfsw8a0/video/upload/v1780983034/Showreel_fgfd8a.mp4",
     subtitle: " NOT JUST A ",
     title1: "VIDEO",
     title2: "EDITOR",
