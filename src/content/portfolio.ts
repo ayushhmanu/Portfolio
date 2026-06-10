@@ -18,7 +18,7 @@ export const longFormProjects = [
         image:
             "https://images.unsplash.com/photo-1579165466741-7f35e4755652?w=800&h=600&fit=crop",
         description:
-            "Versatility is my specialty. Whether you need fast-paced retention or cinematic storytelling, I adapt to your brand.",
+            "",
         videoUrl: "https://youtu.be/98MCAS9n9yI",
     },
     {
@@ -29,37 +29,37 @@ export const longFormProjects = [
         image:
             "https://images.unsplash.com/photo-1518066000714-58c45f1a2c0a?w=800&h=600&fit=crop",
         description:
-            "I don't let AI replace creativity; I use it to amplify it.",
+            "",
         videoUrl: "https://youtu.be/oZdMThnsQAA",
     },
     {
         id: 3,
-        title: "Talking Head",
-        category: "Informative",
-        duration: "1:30",
+        title: "Storytelling Edit",
+        category: "",
+        duration: "",
         image:
             "https://images.unsplash.com/photo-1556910103-1c02745a30bf?w=800&h=600&fit=crop",
         description:
-            "Talking heads can be boring. I make them impossible to skip.",
+            "",
         videoUrl: "https://youtu.be/RLt5YrzSVPo",
     },
     {
         id: 4,
-        title: "The Comeback",
-        category: "Cinematic",
-        duration: "3:45",
+        title: "Youtube Channel Intros",
+        category: "",
+        duration: "",
         image: "https://images.unsplash.com/photo-1536240478700-b869ad10025f?w=800&h=600&fit=crop",
-        description: "Every great story has a turning point. This is that moment.",
-        videoUrl: "https://youtu.be/REPLACE_WITH_YOUR_LINK",
+        description: "",
+        videoUrl: "https://youtu.be/CPTlR92OnbE",
     },
     {
         id: 5,
-        title: "Raw & Real",
-        category: "Documentary",
-        duration: "5:20",
+        title: "Jai Hind Project",
+        category: "",
+        duration: "",
         image: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800&h=600&fit=crop",
-        description: "Unfiltered. Unscripted. Just pure storytelling.",
-        videoUrl: "https://youtu.be/REPLACE_WITH_YOUR_LINK",
+        description: "",
+        videoUrl: "https://youtu.be/pgqeFBHUEeI",
     },
 ];
 
@@ -80,10 +80,10 @@ export const shortFormProjects = [
     },
     {
         id: 3,
-        title: "",
-        category: "Documenting",
-        views: "4586",
-        videoUrl: "https://youtube.com/shorts/VAIcC3Lpbp8",
+        title: "Ai Video Edit",
+        category: "",
+        views: "",
+        videoUrl: "https://youtube.com/shorts/e2neeXmVad8?feature=share",
     },
     {
         id: 4,
