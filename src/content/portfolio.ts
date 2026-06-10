@@ -12,9 +12,9 @@ export const heroContent = {
 export const longFormProjects = [
     {
         id: 1,
-        title: "Storytelling & Documentary Edit",
+        title: "Documentary Edit",
         category: "",
-        duration: "2:00",
+        duration: "",
         image:
             "https://images.unsplash.com/photo-1579165466741-7f35e4755652?w=800&h=600&fit=crop",
         description:
@@ -25,7 +25,7 @@ export const longFormProjects = [
         id: 2,
         title: "UI Motion Design For Apps & Websites",
         category: "",
-        duration: "1:08",
+        duration: "",
         image:
             "https://images.unsplash.com/photo-1518066000714-58c45f1a2c0a?w=800&h=600&fit=crop",
         description:
@@ -45,21 +45,21 @@ export const longFormProjects = [
     },
     {
         id: 4,
-        title: "Youtube Channel Intros",
+        title: "Jai Hind Project",
         category: "",
         duration: "",
         image: "https://images.unsplash.com/photo-1536240478700-b869ad10025f?w=800&h=600&fit=crop",
         description: "",
-        videoUrl: "https://youtu.be/CPTlR92OnbE",
+        videoUrl: "https://youtu.be/pgqeFBHUEeI",
     },
     {
         id: 5,
-        title: "Jai Hind Project",
+        title: "Youtube Channel Intros",
         category: "",
         duration: "",
         image: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800&h=600&fit=crop",
         description: "",
-        videoUrl: "https://youtu.be/pgqeFBHUEeI",
+        videoUrl: "https://youtu.be/CPTlR92OnbE",
     },
 ];
 
@@ -80,26 +80,26 @@ export const shortFormProjects = [
     },
     {
         id: 3,
-        title: "Ai Video Edit",
-        category: "",
+        title: "",
+        category: "Ai Video Edit",
         views: "",
         videoUrl: "https://youtube.com/shorts/e2neeXmVad8?feature=share",
     },
     {
         id: 4,
-        title: "Midnight Run",
+        title: "",
         category: "Cinematic Storytelling",
-        views: "120K",
+        views: "",
         image: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=400&h=700&fit=crop",
-        videoUrl: "https://youtube.com/shorts/GqNI85BT0q4?feature=share",
+        videoUrl: "https://youtube.com/shorts/Rdmb6dGy6xU",
     },
     {
         id: 5,
-        title: "One Shot",
-        category: "Documenting",
-        views: "87K",
+        title: "",
+        category: "Voiceover & Cinematic Edit",
+        views: "",
         image: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=400&h=700&fit=crop",
-        videoUrl: "https://youtube.com/shorts/KQzE1vGiehE?feature=share",
+        videoUrl: "https://youtube.com/shorts/GszFGlgEbDs",
     },
 ];
 
