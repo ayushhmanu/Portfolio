@@ -19,7 +19,7 @@ export const longFormProjects = [
             "https://images.unsplash.com/photo-1579165466741-7f35e4755652?w=800&h=600&fit=crop",
         description:
             "Versatility is my specialty. Whether you need fast-paced retention or cinematic storytelling, I adapt to your brand.",
-        videoUrl: "https://youtu.be/67cJJuzMxuM",
+        videoUrl: "https://youtu.be/oZdMThnsQAA",
     },
     {
         id: 2,
@@ -30,7 +30,7 @@ export const longFormProjects = [
             "https://images.unsplash.com/photo-1518066000714-58c45f1a2c0a?w=800&h=600&fit=crop",
         description:
             "I don't let AI replace creativity; I use it to amplify it.",
-        videoUrl: "https://youtu.be/CPTlR92OnbE",
+        videoUrl: "https://youtu.be/98MCAS9n9yI",
     },
     {
         id: 3,
@@ -91,7 +91,7 @@ export const shortFormProjects = [
         category: "Cinematic Storytelling",
         views: "120K",
         image: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=400&h=700&fit=crop",
-        videoUrl: "https://youtu.be/REPLACE_WITH_YOUR_LINK",
+        videoUrl: "https://youtube.com/shorts/GqNI85BT0q4?feature=share",
     },
     {
         id: 5,
@@ -99,7 +99,7 @@ export const shortFormProjects = [
         category: "Documenting",
         views: "87K",
         image: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=400&h=700&fit=crop",
-        videoUrl: "https://youtu.be/REPLACE_WITH_YOUR_LINK",
+        videoUrl: "https://youtube.com/shorts/KQzE1vGiehE?feature=share",
     },
 ];
 

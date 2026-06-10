@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react"
 import { Magnetic } from "./ui/magnetic"
 import gsap from "gsap"
 
-const BRAND_NAME = "AYUSH MANU"
+const BRAND_NAME = "AYUSH TIWARI"
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
