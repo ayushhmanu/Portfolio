@@ -12,25 +12,25 @@ export const heroContent = {
 export const longFormProjects = [
     {
         id: 1,
-        title: "Viral Engine",
-        category: "Trends",
+        title: "Storytelling & Documentary Edit",
+        category: "",
         duration: "2:00",
         image:
             "https://images.unsplash.com/photo-1579165466741-7f35e4755652?w=800&h=600&fit=crop",
         description:
             "Versatility is my specialty. Whether you need fast-paced retention or cinematic storytelling, I adapt to your brand.",
-        videoUrl: "https://youtu.be/oZdMThnsQAA",
+        videoUrl: "https://youtu.be/98MCAS9n9yI",
     },
     {
         id: 2,
-        title: "Future-Forward",
-        category: "AI Integrated",
+        title: "UI Motion Design For Apps & Websites",
+        category: "",
         duration: "1:08",
         image:
             "https://images.unsplash.com/photo-1518066000714-58c45f1a2c0a?w=800&h=600&fit=crop",
         description:
             "I don't let AI replace creativity; I use it to amplify it.",
-        videoUrl: "https://youtu.be/98MCAS9n9yI",
+        videoUrl: "https://youtu.be/oZdMThnsQAA",
     },
     {
         id: 3,
@@ -67,16 +67,16 @@ export const shortFormProjects = [
     {
         id: 1,
         title: "",
-        category: "Cinematic Storytelling",
-        views: "6143",
-        videoUrl: "https://youtube.com/shorts/GszFGlgEbDs",
+        category: "Podcast Clipping",
+        views: "",
+        videoUrl: "https://youtube.com/shorts/GqNI85BT0q4?feature=share",
     },
     {
         id: 2,
         title: "",
-        category: "Storytelling",
-        views: "850K",
-        videoUrl: "https://youtube.com/shorts/Rdmb6dGy6xU",
+        category: "Documentary Infographics Edit",
+        views: "",
+        videoUrl: "https://youtube.com/shorts/KQzE1vGiehE",
     },
     {
         id: 3,
