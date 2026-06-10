@@ -32,9 +32,9 @@ export function SelectedWorks() {
                 <div className="flex-1 flex items-center">
                     <div className="ml-6 md:ml-[192px]">
                         <h2 className="font-display text-5xl md:text-8xl font-bold tracking-tighter text-left">
-                            SELECTED
+                            Some
                             <br />
-                            <span className="text-red-600">WORKS</span>
+                            <span className="text-red-600">Highlights</span>
                         </h2>
                         <div className="h-1 w-20 bg-red-600 mt-6"></div>
                     </div>
